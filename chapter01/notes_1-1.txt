@@ -43,7 +43,7 @@
     * More on normal + applicative order evaluation later in book.
 
 . Two conditional operations introduced `cond` and `if`
-    * At this 
-
-
-
+    * At this stage `if` is equivalent to `cond` with only one clause, and an optional 'catch-all'
+    * Syntax is (cond (<p0> <e0>) (<p1> <e1>) ... [(else <en>)]) where <px> are predicates, and <ex> are conseqeuent expressions
+    * Note use of 'predicate' rather than 'proposition' because it is parameterised, actual values not specified
+    * Standard logical compositions available: (and <e1>...<en>), (or <e1>...<en>), (not <e>)
