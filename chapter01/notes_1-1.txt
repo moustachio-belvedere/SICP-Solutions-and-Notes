@@ -42,7 +42,8 @@
       - Easier to reason about when using more complex procedures not capable of being modelled with successive substitutions
     * More on normal + applicative order evaluation later in book.
 
-.  
+. Two conditional operations introduced `cond` and `if`
+    * At this 
 
 
 
