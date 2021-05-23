@@ -27,4 +27,4 @@
         (sumSquare (largest x y z)
                    (secondLargest x y z)))
 
-(maxSumSquare 5 5 6) ; 61
+(maxSumSquare 4 5 6) ; 61
