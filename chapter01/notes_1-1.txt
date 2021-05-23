@@ -58,7 +58,7 @@
 
     ; and for a slightly different case, normal evaluation order leads to
     (test 0 (+ 2 3)) => (+ 2 3) => 5 
-    ; not evaluation of addition only performed AFTER branch taken
+    ; note evaluation of addition only performed AFTER branch taken
     ```
 
 . Two conditional operations introduced `cond` and `if`
