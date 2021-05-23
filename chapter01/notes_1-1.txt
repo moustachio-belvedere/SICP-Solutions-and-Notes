@@ -44,21 +44,22 @@
 
 . ADDITIONAL notes on Applicative vs. Normal evaluation, example:
 
-```
-(define (test x y)
-  (if (= x 0)
-    0
-    y))
+    ```
+    (define (test x y)
+      (if (= x 0)
+        0
+        y))
 
-; in applicative, operand is evaluated first
-(test 1 (+ 2 3)) => (test 1 5)
+    ; in applicative, operand is evaluated first
+    (test 1 (+ 2 3)) => (test 1 5)
 
-; in normal, operand is parameterized and only evaluated if needed
-(test 1 (+ 2 3)) => (test 1 foo)
+    ; in normal, operand is parameterized and only evaluated if needed
+    (test 1 (+ 2 3)) => (test 1 foo)
 
-; and for a slightly different case, normal evaluation order leads to
-(test 0 (+ 2 3)) => (+ 2 3) => 5 
-; not evaluation of addition only performed AFTER branch taken
+    ; and for a slightly different case, normal evaluation order leads to
+    (test 0 (+ 2 3)) => (+ 2 3) => 5 
+    ; not evaluation of addition only performed AFTER branch taken
+    ```
 
 . Two conditional operations introduced `cond` and `if`
     * At this stage `if` is equivalent to `cond` with only one clause, but 'catch-all' else clause is implicit for `if`
