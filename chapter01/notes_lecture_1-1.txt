@@ -1,0 +1,34 @@
+1984 lecture 1
+--------------
+. Geometry, Gaia (Earth) + measuring (Metrology), developed by Egyptian priesthood. To them geoemetry was the use of surveying instruments
+
+. 'Easy to confuse the essence of what you are doing, with the tools that you use'
+  Relates to how the words we use can limit the essence of our thoughts, feelings?
+  Certainly the mathematical language we have places constraints on the abstract ideas we can express,
+  c.f. problem of coming up with useful terminology and notation
+
+. Computer science as the formalization of 'processes' or 'procedures'
+
+. Declarative knowledge states what you want
+. Imperative knowledge tells us how to get there
+
+. Procedure as a 'pattern of rules' that control processes
+
+. Square root as a 'fixed point' method is viewing the problem as one that has to satisfy a tolerance F(X)≃X, or abs(F(X) - X) < tol.
+
+. How to describe a programming languages?
+    * Primitive (fundamental) elements
+    * Means of combination
+    * Means of abstraction
+
+. A combination as an application of an operator to operand(s). Operands themselves can be combinations.
+
+. (define (square x) (* x x)) is syntactic sugar for (define square (lambda (x) (* x x)))
+
+. (define (A) (+ 5 2)) can be used as (A) and will return 7. But just stating 'A' just returns the unevaluated compound procedure.
+
+. In contrast, (define A (+ 5 2)) and calling 'A' will return 7,  and calling (A) will return an error (nothing to evaluate? Cannot evaluate a number)
+
+. Should not be able to tell difference between built-in and compound (user-defined) functionality, both are abstracted black-box procedures
+
+
