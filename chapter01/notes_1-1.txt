@@ -4,7 +4,45 @@
 
 . LISP (LISt Processor), list-oriented programming language!
 
+. A Lisp-based description of a process is described as a 'procedure'
+
 . Language originally 'released' in 1960 in paper:
-  "Recursive Functions of Symbolic Expressions and Their Computation by Machine"
+  "Recursive Functions of Symbolic Expressions and Their Computation by Machine" - J McCarthy
+
+. Expressive power in a programming language is derived from the combination of:
+    * Primitive expressions
+    * Means of combining those primitive expressions
+    * Means of abstraction, combined primitives can be manipulated as units
+
+. Due to W^X constraints on modern hardware/OS, runtime homoiconicity is probably now only possible with high level languages e.g. Lisp, Julia etc
+
+. Even a number is considered a primitive expression, thus => `(+ 3 4)` is considered a compound expression or 'combination'
+
+. Every expression has a value => 'List programmers know the value of everything but the cost of nothing' - A Perlis. (Lisp can be slow.)
+
+. Lisp 'global environment' keeps track of top-level `define` statements
+
+. Lisp evaluates compound operations recursively, can be visualised as a tree-like structure, percolating values up the hierarchy: 'tree accumulation'
+
+. Primitive expressions are equivalent to base cases in a user-defined recursive procedure
+
+. Some exceptions exist to numerals, built-in operators and named variables. These are known as 'special forms', e.g. `(define x 3)` which is NOT a combination
+
+. These special form evaluation rules in addition to the regular recursive evaluation rules constitute the SYNTAX of SICP LISP
+
+. Syntax for defining a function: `(define (<name> <parameters>) <body)` but later in book we learn how to `define` procedures without naming them, and to give names to procedures that have already been created
+
+. Evaluation order: Applicative vs. Normal
+    * Normal order: 'fully expand then reduce'
+      - Parameterise all operands, only evaluate when reach base case, i.e. when needed (lazy evaluation?)
+      - Can lead to work duplication, e.g. sum-of-squares which operand of (+ 5 1) will have to evaluate (+ 5 1) twice at the squaring stage
+    * Applicative order: evaluate operator and operands, then apply evaluated operator to evaluated operands
+      - Used by Lisp
+      - More efficient cf. normal order
+      - Easier to reason about when using more complex procedures not capable of being modelled with successive substitutions
+    * More on normal + applicative order evaluation later in book.
+
+.  
+
 
 
