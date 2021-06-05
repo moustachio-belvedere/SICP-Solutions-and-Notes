@@ -15,6 +15,7 @@
     * Means of abstraction, combined primitives can be manipulated as units
 
 . Due to W^X constraints on modern hardware/OS, runtime homoiconicity is probably now only possible with high level languages e.g. Lisp, Julia etc
+Or perhaps homoiconicity refers simply to the ability to view code as data, rather than manipulate it at runtime.
 
 . Even a number is considered a primitive expression, thus => `(+ 3 4)` is considered a compound expression or 'combination'
 
