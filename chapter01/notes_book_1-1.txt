@@ -68,3 +68,23 @@ Or perhaps homoiconicity refers simply to the ability to view code as data, rath
     * Note use of 'predicate' rather than 'proposition' because it is parameterised, actual values not specified
     * Standard logical compositions available: (and <e1>...<en>), (or <e1>...<en>), (not <e>)
 
+. In the `sqrt` function we can, for example, consider the `square` function as a 'black-box', without concern for how it is implemented. It is an abstraction of a procedure, i.e. a _procedural abstraction_. Is it easier to reason about a procedural abstraction if it has referential transparency? (I.e. no side effects.)
+
+. 'a formal parameter of a procedure has a very special role in the procedure definition, in that it doesn't matter what name the formal parameter has'. True in a technical sense, but not in a human sense. Readability and naming matters.
+
+. Would absence of lexical scoping for functions preclude referential transparency?
+
+. Within the _scope_ of a procedure, the formal parameters are known as _bound_ variables. Bound variables are those stated in the procedure definition.
+
+. Unbound variables are _free_ variables.
+
+. Free variables can be _captured_ by redefining in a tighter scope.
+
+. Bound variables as the formal parameters of a procedure constitute one form of _name isolation_.
+
+. Another form of name isolation is _block structure_
+
+. The use of block structures enables _lexical scoping_, in which free variables of a procedure are taken to refer to bindings made by enclosing blocks (procedure definitions)
+
+. Block structure originated in Algol 60
+
