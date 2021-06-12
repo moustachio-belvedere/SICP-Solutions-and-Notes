@@ -1,0 +1,22 @@
+Procedures and the Processes they Generate
+------------------------------------------
+. Procedure as a tool for specifying _local evolution_. What does this mean?
+
+. A recursive process is characterized by a chain of _deferred operations_
+
+. Factorial as a canonical example of recursion vs iteration approaches
+
+. If length of the chain of deferred operations grows linearly with input `n` then it is a _linear recursive process_
+
+. Alternative approach: an _iterative process_
+
+. In general, an iterative process has state characterized by some number of _state variables_, with a defined procedure for state evolution
+
+. Again, in factorial number of iterations is linear in `n` so it is a _linear iterative process_
+
+. Don't get mixed up between recursive procedures and recursive processes!
+
+
+
+
+
