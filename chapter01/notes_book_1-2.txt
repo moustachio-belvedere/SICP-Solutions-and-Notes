@@ -1,6 +1,6 @@
 Procedures and the Processes they Generate
 ------------------------------------------
-. Procedure as a tool for specifying _local evolution_. What does this mean?
+. Procedure as a tool for specifying _local evolution_. What does this mean? Perhaps, evolution within a scope. Even less clear in the context of parallelised processes.
 
 . A recursive process is characterized by a chain of _deferred operations_
 
@@ -16,7 +16,7 @@ Procedures and the Processes they Generate
 
 . Don't get mixed up between recursive procedures and recursive processes!
 
-
+. In general, tree recursive processes will be temporally proportional to number of nodes in tree (makes sense), spatially proportional to maximum depth of tree (why?)
 
 
 
