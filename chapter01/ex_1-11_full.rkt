@@ -49,3 +49,19 @@
 (g 6)
 (g 7)
 (display "\n")
+
+; can also do this, but more LOC
+(define (g-other n)
+  (if (< n 3) n
+      (g-iter 0 1 2 (- n 2))))
+
+(display "\nIterative approach 2:\n")
+(g-other 0)
+(g-other 1)
+(g-other 2)
+(g-other 3)
+(g-other 4)
+(g-other 5)
+(g-other 6)
+(g-other 7)
+(display "\n")
