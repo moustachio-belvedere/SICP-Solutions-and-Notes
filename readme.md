@@ -3,6 +3,8 @@ SICP
 
 Notes and solutions, written as part of an SICP book club.
 
-Non-programmatic mathematical solutions circumvent lack of GitHub LaTeX rendering through use of Jupyter notebooks.
+The language used is the SICP flavour of Racket.
 
-Language is the SICP flavour of Racket.
+Non-racket files are generally either LaTeX, PDF or HTML files.
+
+Questions not done or partially done are noted in `revisit.txt`.
