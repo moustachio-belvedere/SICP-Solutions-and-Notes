@@ -1,5 +1,5 @@
 Unfinished as filling in massive data map is laborious.
 
-Space complexity is O(a) where a is the amount of change.
+Space complexity is O(a) where a is the amount of change. Can clearly be seen from longest possible chain that has been drawn in full in HTML diagram. More accurately, will be ~ 2a.
 
-Time complexity?
+Time complexity? Seems more complicated and relies on assumptions on value of `amount` relative to size of coin denominations.
