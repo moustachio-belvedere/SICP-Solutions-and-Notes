@@ -1,5 +1,7 @@
 #lang sicp
 
+; see .tex/.pdf file for derivation
+
 (define (even? x)
   (= (/ x 2) 0))
 

@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\geometry{a4paper} 
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{color,soul}
+\DeclareMathOperator{\di}{d\!}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\newcommand{\inlist}[1]{\texttt{#1}}
+
+\author{J L Kaplan}
+
+\begin{document}
+
+\section*{SICP Exercise 1.19}
+
+\subsection*{Derivation of $p'$ and $q'$}
+First transformation:
+\begin{equation}
+  a_{n+1} \leftarrow q \left( a_n + b_n \right) + p a_n, \qquad b_{n+1} \leftarrow p b_n + q a_n,
+\end{equation}
+second transformation:
+\begin{equation}
+  \label{eq:t2}
+  a_{n+2} \leftarrow q \left( a_{n+1} + b_{n+1} \right) + p a_{n+1}, \qquad b_{n+2} \leftarrow p b_{n+1} + q a_{n+1},
+\end{equation}
+then substituting the values from the first transformation into the $b_{n+2}$ transformation in equation~\ref{eq:t2}, we can see that:
+\begin{equation}
+  b_{n+2} \leftarrow b_n \left( p^2 + q^2 \right) + a_n \left( 2pq + q^2 \right),
+\end{equation}
+and comparing with transform 1 it can be seen that
+\begin{equation}
+  p' = p^2 + q^2,
+\end{equation}
+and
+\begin{equation}
+  q' = 2pq + q^2.
+\end{equation}
+
+
+\end{document}
