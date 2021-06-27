@@ -18,5 +18,5 @@ Procedures and the Processes they Generate
 
 . In general, tree recursive processes will be temporally proportional to number of nodes in tree (makes sense), spatially proportional to maximum depth of tree (why?)
 
-
+. Relevance / importance of Lame's theorem in this context? Not sure I understand the significance of the connection.
 
