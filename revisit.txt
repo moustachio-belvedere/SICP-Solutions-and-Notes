@@ -1,1 +1,2 @@
 1.14 " time complexity
+1.28 " Carmichael test working, but not sure why, didn't follow book tactic
