@@ -5,30 +5,36 @@
 (define (square x)
   (* x x))
 
-(define (smallest-divisor n)
-  (if (divides? 2 n) 2
-  (find-divisor n 3)))
+(define (even? x)
+  (= (remainder x 2) 0))
 
-(define (find-divisor n test-divisor)
-  (cond ((> (square test-divisor) n) 
-         n)
-        ((divides? test-divisor n) 
-         test-divisor)
-        (else (find-divisor 
-               n 
-               (+ test-divisor 2)))))
+(define (expmod base exparg m)
+  (cond ((= exparg 0) 1)
+        ((even? exparg)
+         (remainder 
+          (square (expmod base (/ exparg 2) m))
+          m))
+        (else
+         (remainder 
+          (* base (expmod base (- exparg 1) m))
+          m))))
 
-(define (divides? a b)
-  (= (remainder b a) 0))
+(define (fermat-test n)
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
 
-(define (prime? n)
-  (= n (smallest-divisor n)))
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fermat-test n) 
+         (fast-prime? n (- times 1)))
+        (else false)))
 
 (define (timed-prime-test n)
   (start-prime-test n (runtime)))
 
 (define (start-prime-test n start-time)
-  (if (prime? n)
+  (if (fast-prime? n 20)
       (report-prime n (- (runtime) 
                        start-time))))
 
@@ -61,9 +67,7 @@
 (search-for-primes 100000001 100000039)
 (newline)
 (search-for-primes 1000000001 1000000021)
-(newline)
-(search-for-primes 10000000001 10000000061)
-(newline)
-(search-for-primes 100000000001 100000000057)
 
-; input did roughly half, better than book suggestion which requires an if test on each iteration
+; higher numbers crash at random num generation stage
+
+; base load is higher than regular prime? function due to all the overhead of getting random numbers and the various other calculations but rate of increase does look logarithmic. At larger numbers, fast-prime? easily beats prime?.
