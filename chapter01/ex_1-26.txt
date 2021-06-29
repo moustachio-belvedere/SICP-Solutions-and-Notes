@@ -1,0 +1,1 @@
+Applicative order evaluation means that every call to expmod with an even exponential is now calling two expmod functions recursively rather than just the one call that would be required if using a dedicated `square` function. Linear recursion -> tree recursion!
