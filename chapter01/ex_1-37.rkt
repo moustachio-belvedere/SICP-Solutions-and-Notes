@@ -45,3 +45,7 @@
 
 (phi-approx-4dp cont-frac-rec)
 (phi-approx-4dp cont-frac-iter)
+
+; note that the iterative approach 'cheats' on the first term by computing it before entering 
+; the iterative loop. This accounts for the difference between iterations required to satisfy
+; tolerance in the two algorithms.
