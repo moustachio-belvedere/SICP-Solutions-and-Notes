@@ -21,3 +21,17 @@ Procedures and the Processes they Generate
 . Relevance / importance of Lame's theorem in this context? Not sure I understand the significance of the connection.
 
 . Page 52, why is (try it) defined separately? Why not just put random directly in the function call.
+
+. Can use a lambda in a direct way: ((lambda (x y z) (+ x y (square z))) 1 2 3) = 12
+
+. let syntax: (let ((<var1> <exp1>)
+                    (<var2> <exp2>)
+                    ...
+                    (<varn> <expn>))
+                    <main expression body>)
+
+. So let blocks introduce a scope for simplifying expressions withing that scope
+
+. let block is syntactic sugar for the direct lambda evaluation shown above
+
+. Subtle differences between `define` and `let` to be elaborated upon later in book
