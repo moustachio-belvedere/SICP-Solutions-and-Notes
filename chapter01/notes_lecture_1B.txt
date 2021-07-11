@@ -1,0 +1,16 @@
+1986 Lecture 1B
+---------------
+
+Peano addition analogies:
+
+. (Iterative) tail call recursion, two piles, incrementally shifted marbles from one to the other until one hand is empty, other hand has sum
+
+. Recursive, three piles of marbles, incrementally remove marbles from one pile and place in hand until that pile is empty, then incrementally add them to the other pile
+
+. Again, recursion proper as a chain of *deferred operations*
+
+. Reminder, tail call recursion is a recursive *procedure* that generates an iterative *process*
+
+. Key property of iterative process (from recursive procedure) is its complete state, as contained within its operands
+
+. Is memoization equivalent to a kind-of 'stack machine' in converting recursive to iterative process descriptions
