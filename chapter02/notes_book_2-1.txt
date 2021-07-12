@@ -1,0 +1,7 @@
+. 2.1 is about data abstraction in analogy to procedural abstraction
+
+. Note that 1st class functions are the beginning of the end for a distinction between code and data. If you can pass a function around a procedure, it is already both!
+
+. Closure: combine primitive objects AND compound objects with equal power
+
+. Data-directed progamming: a technique that allows individual data representations to be designed in isolation and then combined additively
