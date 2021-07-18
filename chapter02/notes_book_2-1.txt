@@ -5,3 +5,10 @@
 . Closure: combine primitive objects AND compound objects with equal power
 
 . Data-directed progamming: a technique that allows individual data representations to be designed in isolation and then combined additively
+
+. Pairs: `cons` is a primitive procedure (mnemonic is `construct`) that takes two args and returns compound data structure containing both args
+
+. `car` procuedure extracts first data part, `cdr` procedure extracts second
+
+. mnemonics for these extraction procedures come from historic IBM704 machines. Addressing scheme could reference 'address' or 'decrement' parts of memory, so 'Contents of Address part of Register', 'Contents of Decrement part of Register'.
+
