@@ -55,9 +55,11 @@
 (newline)
 (display (cdr y))
 
-(define z (make-rat 8 -4))
+(define z (make-rat -8 4))
 (print-rat z)
 (newline)
 (display (car z))
 (newline)
 (display (cdr z))
+
+; no need to change anything? GCD sorts it all out?

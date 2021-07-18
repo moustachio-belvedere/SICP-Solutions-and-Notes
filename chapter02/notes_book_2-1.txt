@@ -12,3 +12,6 @@
 
 . mnemonics for these extraction procedures come from historic IBM704 machines. Addressing scheme could reference 'address' or 'decrement' parts of memory, so 'Contents of Address part of Register', 'Contents of Decrement part of Register'.
 
+. At larger scale, abstractions can be conceptualized as 'abstraction barriers', the implementations of abstraction layer need not know anything about the implementation of higher and lower abstraction barriers
+
+. 
