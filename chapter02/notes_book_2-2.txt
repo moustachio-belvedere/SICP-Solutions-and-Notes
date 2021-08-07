@@ -1,0 +1,5 @@
+. Linked list can be constructed via nested calls to `cons`
+
+. Lisp has syntactic sugar for above: `(list a b c ...)`
+
+. `nil` is a contraction of the latin `nihil` (nothing)
