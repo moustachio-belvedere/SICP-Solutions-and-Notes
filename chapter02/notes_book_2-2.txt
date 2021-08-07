@@ -3,3 +3,9 @@
 . Lisp has syntactic sugar for above: `(list a b c ...)`
 
 . `nil` is a contraction of the latin `nihil` (nothing)
+
+. Variadic functions are doable, examples with lambda equivalents:
+    with z as `list` argument:
+    (define (f x y . z) <body>) <=> (lambda (x y . z) <body>)
+    with single `list` argument:
+    (define (g . w) <body>) <=> (lambda w <body>)
