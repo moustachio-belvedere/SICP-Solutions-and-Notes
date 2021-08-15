@@ -9,3 +9,5 @@
     (define (f x y . z) <body>) <=> (lambda (x y . z) <body>)
     with single `list` argument:
     (define (g . w) <body>) <=> (lambda w <body>)
+
+. Recursion as a natural tool for dealing with tree-like structures
