@@ -13,20 +13,6 @@
       (cons (proc (car items))
             (map proc (cdr items)))))
 
-(define (flatten-once items)
-  (define (flat-iter items acc)
-    (cond ((null? items) acc)
-          ((pair? (car items)) (flat-iter (cdr items) (append acc (car items))))
-          (else (flat-iter (cdr items) (append acc (list (car items)))))))
-  (flat-iter items nil))
-
-(define (fringe items)
-  (if (pair? items)
-      (flatten-once (map fringe items))
-      items))
-
-(define (sum list) (apply + list))
-
 (define (make-mobile left right)
   (list left right))
 
@@ -45,4 +31,30 @@
 (define (branch-structure branch)
   (cadr branch))
 
-(sum (list 1 2 3 4 5))
+(define (is-mobile? x)
+  (pair? (car x)))
+
+(define (is-branch? x)
+  (not (pair? (car x))))
+
+(define (has-weight? x)
+  (not (pair? (branch-structure x))))
+
+(define (total-weight x)
+  (if (has-weight? x)
+      (branch-structure x)
+      (if (is-mobile? x)
+          (+ (total-weight (left-branch x))
+             (total-weight (right-branch x)))
+          (total-weight (branch-structure x)))))
+
+(define x (make-mobile (make-branch 5 10)
+                       (make-branch 7 10)))
+
+(define y (make-mobile (make-mobile (make-branch 5 10)
+                                    (make-branch 3 9))
+                       (make-branch 5 (make-mobile (make-branch 3 4)
+                                                   (make-branch 2 5)))))
+
+(total-weight x)
+(total-weight y)
