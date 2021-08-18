@@ -20,14 +20,15 @@
           (else (flat-iter (cdr items) (append acc (list (car items)))))))
   (flat-iter items nil))
 
-(define (deep-reverse items)
+(define (fringe items)
   (if (pair? items)
-      (let ((ritems (reverse items)))
-        (map deep-reverse ritems))
+      (flatten-once (map fringe items))
       items))
 
 (define x (list (list 1 2 (list 8 9)) (list 3 4) (list 5 6) 7))
 (define y (list (list 1 2) (list 3 4)))
 (define z (list 1 2 3 (list 4 5)))
 
-(flatten-once z)
+(fringe x)
+(fringe y)
+(fringe z)
