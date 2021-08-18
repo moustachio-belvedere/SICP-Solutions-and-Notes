@@ -48,6 +48,39 @@
              (total-weight (right-branch x)))
           (total-weight (branch-structure x)))))
 
+(define (total-torque x offset)
+  (if (has-weight? x)
+      (* offset (branch-structure x))
+      (if (is-mobile? x)
+          (+ (total-torque (left-branch x) (- offset (branch-length (left-branch x))))
+             (total-torque (right-branch x) (+ offset (branch-length (right-branch x)))))
+          (total-torque (branch-structure x) offset))))
+
+(define (is-balanced? mobile)
+  (= (total-torque mobile 0) 0))
+
+;;; torque tests
+(define a (make-mobile (make-branch 5 10)
+                       (make-branch 5 10)))
+
+(define b (make-mobile (make-branch 5 10)
+                       (make-branch 2 10)))
+
+(define c (make-mobile (make-branch 3 (make-mobile (make-branch 3 2)
+                                                   (make-branch 4 1)))
+                       (make-branch 3 (make-mobile (make-branch 4 1)
+                                                   (make-branch 3 2)))))
+
+(define d (make-mobile (make-branch 3 (make-mobile (make-branch 3 2)
+                                                   (make-branch 4 1)))
+                       (make-branch 3 (make-mobile (make-branch 4 1)
+                                                   (make-branch 3 3)))))
+(is-balanced? a)
+(is-balanced? b)
+(is-balanced? c)
+(is-balanced? d)
+
+;;; weight tests
 (define x (make-mobile (make-branch 5 10)
                        (make-branch 7 10)))
 
