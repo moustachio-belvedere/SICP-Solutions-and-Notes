@@ -11,3 +11,9 @@
     (define (g . w) <body>) <=> (lambda w <body>)
 
 . Recursion as a natural tool for dealing with tree-like structures
+
+. Thinking of algorithms like a signal processing engineer, with block structures
+
+. "If we could organise our programs to make the signal-flow structure manifest in the procedures we write, this would increase the conceptual clarity of the resulting code."
+
+. Waters (1979) analyzed a bunch of Fortran programs and found that 90% of code could be rewritten in terms of maps, firlters and accumulations!
