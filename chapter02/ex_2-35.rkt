@@ -24,6 +24,13 @@
                (enumerate-tree (car tree))
                (enumerate-tree (cdr tree))))))
 
+(define (enum-t x)
+  (map (lambda (x) (if (pair? x)
+                       (map (lambda (y) 
+                       (append (list (car y) (enum-t (cdr x))))
+                       x))
+       x))
+
 (define (count-leaves t)
   (accumulate (lambda (x y) (+ 1 y))
               0
@@ -32,4 +39,8 @@
 ; 10 leaves
 (define x (list 9 5 2 (list 1 2 (list 5 3) 3 2) 1))
 
+(display x)
+(newline)
+(enum-t x)
+(enumerate-tree x)
 (count-leaves x)
