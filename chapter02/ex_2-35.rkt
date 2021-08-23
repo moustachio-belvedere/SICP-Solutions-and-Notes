@@ -9,7 +9,7 @@
                       (cdr sequence)))))
 
 (define (count-leaves t)
-  (accumulate (lambda (x y) (+ x y))
+  (accumulate +
               0
               (map (lambda (x) (if (pair? x)
                                  (count-leaves x)
