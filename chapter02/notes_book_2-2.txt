@@ -17,3 +17,5 @@
 . "If we could organise our programs to make the signal-flow structure manifest in the procedures we write, this would increase the conceptual clarity of the resulting code."
 
 . Waters (1979) analyzed a bunch of Fortran programs and found that 90% of code could be rewritten in terms of maps, firlters and accumulations!
+
+. racket implementation of map allows (map + (list 1 2) (list 3 4)) = (4 6)
