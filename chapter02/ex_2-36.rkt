@@ -8,12 +8,26 @@
                       initial 
                       (cdr sequence)))))
 
-(define (accumulate-n op init seqs)
+(define (accumulate-horizontal op init seqs)
+  (if (null? seqs)
+      nil
+      (cons (accumulate op init (car seqs))
+            (accumulate-horizontal op init (cdr seqs)))))
+
+(define (accumulate-vertical op init seqs)
   (if (null? (car seqs))
       nil
-      (cons (accumulate op init (list 1 2 3)))
-            (accumulate-n op init (cdr seqs)))))
+      (cons (accumulate op init (map car seqs))
+            (accumulate-vertical op init (map cdr seqs)))))
 
-(define x (list (list 1 2 3) (list 4 5 6) (list 7 8 9)))
+(define x (list (list 1 2 3)
+                (list 4 5 6)
+                (list 7 8 9)
+                (list 10 11 12)))
 
-(accumulate-n + 0 x)
+(display x)
+(newline)
+(display "accumulate-horizontal: ")
+(accumulate-horizontal + 0 x)
+(display "accumulate-vertical: ")
+(accumulate-vertical + 0 x)
