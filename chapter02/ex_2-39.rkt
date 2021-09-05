@@ -1,5 +1,12 @@
 #lang sicp
 
+(define (append list1 list2)
+  (if (null? list1)
+      list2
+      (cons (car list1) 
+            (append (cdr list1) 
+                    list2))))
+
 (define (accumulate op initial sequence)
   (if (null? sequence)
       initial
@@ -18,12 +25,13 @@
               (cdr rest))))
   (iter initial sequence))
 
-(newline)
-(fold-right / 1 (list 1 2 3))
-(fold-left / 1 (list 1 2 3))
-(newline)
-(fold-right list nil (list 1 2 3))
-(fold-left list nil (list 1 2 3))
-(newline)
+(define (reverseR sequence)
+  (fold-right (lambda (x y) (append y (list x))) nil sequence))
 
-; for fold-right and fold-left to be guaranteed equal, the `op` must be commutable (and associative?)
+(define (reverseL sequence)
+  (fold-left (lambda (x y) (cons y x)) nil sequence))
+
+(define x (list 2 3 5 7 11 13 17 19 23))
+
+(reverseR x)
+(reverseL x)
