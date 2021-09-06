@@ -52,12 +52,27 @@
   (flatmap get-trip
            (enumerate-interval 3 n)))
 
-(unique-triplets 4)
-
-(define (sumeqto-s? x s)
-  (= (apply + x) s))
-
-(define (triples-sum-to-s s n)
+(define (unordered-triples-sum-to-s s n)
+  (define (sumeqto-s? x)
+    (= (apply + x) s))
   (filter sumeqto-s? (unique-triplets n)))
 
-; first consider unordered triplets, then consider ordered triplets
+(define (remove item sequence)
+  (filter (lambda (x) (not (= x item)))
+          sequence))
+
+(define (permutations s)
+  (if (null? s)   ; empty set?
+      (list nil)  ; sequence containing empty set
+      (flatmap (lambda (x)
+                 (map (lambda (p) 
+                        (cons x p))
+                      (permutations 
+                       (remove x s))))
+               s)))
+
+(define (ordered-triples-sum-to-s s n)
+  (flatmap permutations
+          (unordered-triples-sum-to-s s n)))
+
+(ordered-triples-sum-to-s 25 10)
