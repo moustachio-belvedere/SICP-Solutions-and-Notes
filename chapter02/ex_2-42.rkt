@@ -51,29 +51,63 @@
 
 (define empty-board nil)
 
-(define (safe? k positions)
-  ())
+(define (cols-check toprow layout)
+  (cond ((null? layout) #t)
+        ((= toprow (car layout)) #f)
+        (else (cols-check toprow (cdr layout)))))
+    
 
+(define (diag-check toprow layout count)
+  (cond ((null? layout) #t)
+        ((or (= toprow (+ (car layout) count))
+             (= toprow (- (car layout) count))) #f)
+        (else (diag-check toprow (cdr layout) (+ count 1)))))
 
-;(define (adjoin-position new-row k rest-of-queens)
-;  (append rest-of-queens
+(define (safe? k layout)
+  (if (> (length layout) 1)
+      (and (cols-check (car layout) (cdr layout))
+           (diag-check (car layout) (cdr layout) 1))
+      #t))
 
-;(define (queens board-size)
-;  (define (queen-cols k)
-;    (if (= k 0)
-;        (list empty-board)
-;        (filter
-;         (lambda (positions) 
-;           (safe? k positions))
-;         (flatmap
-;          (lambda (rest-of-queens)
-;            (map (lambda (new-row)
-;                   (adjoin-position 
-;                    new-row 
-;                    k 
-;                    rest-of-queens))
-;                 (enumerate-interval 
-;                  1 
-;                  board-size)))
-;          (queen-cols (- k 1))))))
-;  (queen-cols board-size))
+(define (adjoin-position new-row k rest-of-queens)
+  (cons new-row rest-of-queens))
+
+(define (queens board-size)
+  (define (queen-cols k)
+    (if (= k 0)
+        (list empty-board)
+        (filter
+         (lambda (positions) 
+           (safe? k positions))
+         (flatmap
+          (lambda (rest-of-queens)
+            (map (lambda (new-row)
+                   (adjoin-position 
+                    new-row 
+                    k 
+                    rest-of-queens))
+                 (enumerate-interval 
+                  1 
+                  board-size)))
+          (queen-cols (- k 1))))))
+  (queen-cols board-size))
+
+(define (n-queens n)
+    (display "Board size ")
+    (display n)
+    (display ": ")
+    (display (length (queens n)))
+    (newline))
+        
+(n-queens 1) 
+(n-queens 2) 
+(n-queens 3) 
+(n-queens 4) 
+(n-queens 5) 
+(n-queens 6) 
+(n-queens 7) 
+(n-queens 8) 
+(n-queens 9) 
+(n-queens 10) 
+(n-queens 11) 
+(n-queens 12) 
