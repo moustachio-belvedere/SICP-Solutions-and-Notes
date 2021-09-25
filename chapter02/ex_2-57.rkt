@@ -90,4 +90,10 @@
         (else (error "unknown expression 
                       type: DERIV" exp))))
 
+; test case from book
 (deriv `(* x y (+ x 3)) `x)
+
+; another test case that uses variadic prod AND sum
+(deriv `(* x y (+ x 3 z)) `x)
+
+
