@@ -1,6 +1,15 @@
 #lang sicp
 (#%require "utils_symdiff.rkt")
 
+; my implementations of variadic make-sum and make-prod
+; are slightly unwieldy looking, but they a handle a number
+; of interesting edge cases.
+
+; any numbers that can be accumulated, are.
+
+; if any accumulated numeric mutliplier is equal to 1, it is ignored.
+; if any accumulated numeric addition term is equal to 0, it is ignored.
+
 (define (augend s)
   (let ((out (cddr s)))
     (if (= (length out) 1)
