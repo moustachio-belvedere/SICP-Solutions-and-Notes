@@ -1,0 +1,6 @@
+cond!
+
+(cond ((= n 0) "zeroval")
+      ((= n 5)))
+
+If just wnat to return true in true case, just leave second clause as above
