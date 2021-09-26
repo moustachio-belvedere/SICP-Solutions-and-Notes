@@ -1,5 +1,6 @@
 #lang sicp
 (#%require "utils_symdiff.rkt")
+(provide deriv)
 
 ; my implementations of variadic make-sum and make-prod
 ; are slightly unwieldy looking, but they a handle a number
@@ -9,9 +10,6 @@
 
 ; if any accumulated numeric mutliplier is equal to 1, it is ignored.
 ; if any accumulated numeric addition term is equal to 0, it is ignored.
-
-; also, wherever nested operations can be simplified, they are. For example:
-; `(+ 3 x (+ 5 y) goes to (+ x y 8)
 
 (define (augend s)
   (let ((out (cddr s)))
