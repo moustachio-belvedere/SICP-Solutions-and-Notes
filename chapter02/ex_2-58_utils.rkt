@@ -1,6 +1,6 @@
 #lang sicp
 (#%require "utils_symdiff.rkt")
-(provide deriv)
+(#%provide deriv)
 
 ; my implementations of variadic make-sum and make-prod
 ; are slightly unwieldy looking, but they a handle a number
@@ -99,11 +99,3 @@
            (multiplicand exp))))
         (else (error "unknown expression 
                       type: DERIV" exp))))
-
-; test case from book
-(deriv `(* x y (+ x 3)) `x)
-
-; another test case that uses variadic prod AND sum
-(deriv `(* x y (+ x 3 z)) `x)
-
-
