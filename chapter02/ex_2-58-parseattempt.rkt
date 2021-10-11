@@ -28,10 +28,8 @@
             (caddr e))))
 
 (define (parse-l1 e)
+
+
+;(define (parse-l1 e)))
 (parse-l0 `(x + (5 * 15)))
-              
-          
-
-              
-
-
+(parse-l0 `(x + 3 + (5 * 15)))
