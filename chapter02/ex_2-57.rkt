@@ -107,5 +107,3 @@
 
 ; another test case that uses variadic prod AND sum
 (deriv `(* x y (+ x 3 z)) `x)
-
-

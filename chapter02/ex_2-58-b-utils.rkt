@@ -1,6 +1,5 @@
 #lang sicp
 (#%require "utils_symdiff.rkt")
-(#%provide deriv)
 
 ; my implementations of variadic make-sum and make-prod
 ; are slightly unwieldy looking, but they a handle a number
