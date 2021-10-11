@@ -3,7 +3,8 @@
 (#%require "ex_2-58-b-utils.rkt")
 
 ; TODO
-; * add transformation (`x +`x + 5) => ((2 * `x) + 5)
+; * add: transformation (`x +`x + 5) => ((2 * `x) + 5)
+; * fix: works for book example, but addition does not commute
 
 (define (sum? x)
   (and (pair? x) (eq? (cadr x) `+)))

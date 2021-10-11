@@ -1,23 +1,15 @@
 #lang sicp
 (#%require "utils_symdiff.rkt")
-(#%require "ex_2-58_utils.rkt")
 
-(define (not-operator x)
-  (not (or (eq? x `+)
-           (eq? x `*))))
+; alternative approach to 2.58,
+; parse minimally bracketed infix
+; to prefix operator notation
 
-; simplest case, two operands, fully bracketed
-; assumes there is at least one operation with two operands
-; e.g. `(x + 5)
-;(define (parse-l0 e)
-  ;(define (e-iter prefix infix)
-    ;(cond ((null? infix)
-            ;prefix)
-          ;((pair? (car infix))
-           ;(e-iter (append prefix (parse-l0 (car infix)))
-                   ;(cdr infix)))
-          ;((not-operator (car infix))
+(define (operator? x)
+  (or (eq? x `+)
+      (eq? x `*)))
 
+; turns infix pairs into prefix pairs
 (define (parse-l0 e)
   (list (cadr e)
         (if (pair? (car e))
@@ -28,8 +20,47 @@
             (caddr e))))
 
 (define (parse-l1 e)
+  ; groups stratified operations into pairs
+  (define (naked? exp op)
+    (let ((pseudo-op (cadr exp)))
+      (and (not (number? pseudo-op))
+           (eq? pseudo-op op))))
 
+  ; by example:
+  ; (bracketise (1 +) () 5 7 `*)
+  ; (1 + 5 * 7) => (1 + (5 * 7))
+  (define (bracketise lhs rhs op1 op2 op)
+    (cond ((and (pair? op1) (pair? op2))
+            (append lhs
+                    (cons (list (parse-l1 op1) op (parse-l1 op2)) rhs)))
+          ((pair? op1)
+            (append lhs
+                    (cons (list (parse-l1 op1) op op2) rhs)))
+          ((pair? op2)
+            (append lhs
+                    (cons (list op1 op (parse-l1 op2)) rhs)))
+          (else
+            (append lhs (cons (list op1 op op2) rhs)))))
 
-;(define (parse-l1 e)))
-(parse-l0 `(x + (5 * 15)))
-(parse-l0 `(x + 3 + (5 * 15)))
+  (define (l1-iter e acc)
+    (display acc)
+    (newline)
+    (cond ((null? e) acc)
+          ;((operator? (car e))
+          ;  (l1-iter (cdr e) (append acc (list (car e)))))
+          ((and (not (null? (cdr e))) (naked? e `*))
+            (parse-l1 (bracketise acc (cdddr e) (car e) (caddr e) (cadr e))))
+          ;((and (not (null? (cdr e))) (naked? e `+))
+          ;  (parse-l1 (bracketise acc (cdddr e) (car e) (caddr e) (cadr e))))
+          ))
+
+  (if (= (length e) 3)
+    e
+    (l1-iter e `())))
+
+(define (parse e)
+  (parse-l0 (parse-l1 e)))
+
+(define test `(a + b + x * y * (j + k * l)))
+(parse-l1 test)
+
