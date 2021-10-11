@@ -5,12 +5,6 @@
 ; TODO
 ; * add transformation (`x +`x + 5) => ((2 * `x) + 5)
 
-; NOTE this is only a partial solution of 2.58b. It allows
-; arbitrary length additions and products but doesn't automatically
-; fill in absent parentheses.
-
-; See ex_2-58-c.rkt for the next step of implementation.
-
 (define (sum? x)
   (and (pair? x) (eq? (cadr x) `+)))
 
@@ -120,4 +114,4 @@
         (else (error "unknown expression 
                       type: DERIV" exp))))
 
-(deriv `(x + (3 * (x + y + 2))) `x)
+(deriv `(x + 3 * (x + y + 2)) `x)
