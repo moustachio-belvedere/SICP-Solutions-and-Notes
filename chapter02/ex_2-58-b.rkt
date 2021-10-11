@@ -95,10 +95,6 @@
     (if (= (length out) 1)
       (car out)
       out)))
-        ;(if (pair? (cdr out))
-        ;    (cadr out)
-        ;    out)
-        ;out)))
 
 (define (deriv exp var)
   (cond ((number? exp) 0)
@@ -118,4 +114,4 @@
         (else (error "unknown expression 
                       type: DERIV" exp))))
 
-(deriv `(x * (y + x)) `x)
+(deriv `(x + (3 * (x + y + 2))) `x)
