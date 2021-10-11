@@ -16,8 +16,6 @@
         out)))
 
 (define (make-sum . ax)
-  ;(display ax)
-  ;(newline)
   (define (sum-iter terms symbols num-tally)
     (cond ((null? terms)
            (if (= num-tally 0)
@@ -61,8 +59,6 @@
         out)))
 
 (define (make-product . mx)
-  ;(display mx)
-  ;(newline)
   (define (prod-iter terms symbols num-tally)
     (cond ((null? terms)
            (cond ((= num-tally 1)
