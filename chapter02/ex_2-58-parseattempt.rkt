@@ -20,47 +20,42 @@
             (caddr e))))
 
 (define (parse-l1 e)
-  ; groups stratified operations into pairs
   (define (naked? exp op)
     (let ((pseudo-op (cadr exp)))
       (and (not (number? pseudo-op))
            (eq? pseudo-op op))))
 
-  ; by example:
-  ; (bracketise (1 +) () 5 7 `*)
-  ; (1 + 5 * 7) => (1 + (5 * 7))
   (define (bracketise lhs rhs op1 op2 op)
-    (cond ((and (pair? op1) (pair? op2))
-            (append lhs
-                    (cons (list (parse-l1 op1) op (parse-l1 op2)) rhs)))
-          ((pair? op1)
-            (append lhs
-                    (cons (list (parse-l1 op1) op op2) rhs)))
-          ((pair? op2)
-            (append lhs
-                    (cons (list op1 op (parse-l1 op2)) rhs)))
-          (else
-            (append lhs (cons (list op1 op op2) rhs)))))
+    (append lhs
+            (cons (list (if (pair? op1) (parse-l1 op1) op1)
+                        op
+                        (if (pair? op2) (parse-l1 op2) op2))
+                        `())
+            rhs))
 
-  (define (l1-iter e acc)
-    (display acc)
-    (newline)
+  (define (op-parse e acc op)
     (cond ((null? e) acc)
-          ;((operator? (car e))
-          ;  (l1-iter (cdr e) (append acc (list (car e)))))
-          ((and (not (null? (cdr e))) (naked? e `*))
+          ((and (not (null? (cdr e))) (naked? e op))
             (parse-l1 (bracketise acc (cdddr e) (car e) (caddr e) (cadr e))))
-          ;((and (not (null? (cdr e))) (naked? e `+))
-          ;  (parse-l1 (bracketise acc (cdddr e) (car e) (caddr e) (cadr e))))
-          ))
+          (else (if (null? (cdr e))
+                  (op-parse (cdr e) (append acc (list (car e))) op)
+                  (op-parse (cddr e) (append acc (list (car e) (cadr e))) op)))))
+
+  (define (l1-iter e)
+    (op-parse (op-parse e `() `*)
+              `()
+              `+))
 
   (if (= (length e) 3)
     e
-    (l1-iter e `())))
+    (l1-iter e)))
+
+(define (l1-wrap e)
+  (car (parse-l1 e)))
 
 (define (parse e)
-  (parse-l0 (parse-l1 e)))
+  (parse-l0 (l1-wrap e)))
 
 (define test `(a + b + x * y * (j + k * l)))
-(parse-l1 test)
-
+;(parse `(a * (b + x) + 5 * z))
+;(parse `((a + b) * x + z * 4))
