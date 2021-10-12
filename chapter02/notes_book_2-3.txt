@@ -3,4 +3,8 @@ cond!
 (cond ((= n 0) "zeroval")
       ((= n 5)))
 
-If just wnat to return true in true case, just leave second clause as above
+If just want to return true in true case, just leave second clause as above
+
+2.58b?
+
+2.60. When is a set that allows duplicates preferable? Aside from speed of some functions.
