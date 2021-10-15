@@ -9,9 +9,21 @@
           ((< x (car setr)) (append acc (list x) setr))))
   (set-iter '() set))
 
+(define (adjoin-set-rec x set)
+  (cond ((null? set) (list x))
+        ((= x (car set)) set)
+        ((> x (car set)) (cons (car set) (adjoin-set-rec x (cdr set))))
+        ((< x (car set)) (cons x set))))
+
+
 (define s1 (list 2 3 5 11))
 
 (adjoin-set 7 s1)
 (adjoin-set 3 s1)
 (adjoin-set 1 s1)
 (adjoin-set 17 s1)
+(newline)
+(adjoin-set-rec 7 s1)
+(adjoin-set-rec 3 s1)
+(adjoin-set-rec 1 s1)
+(adjoin-set-rec 17 s1)
