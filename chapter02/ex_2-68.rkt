@@ -10,39 +10,27 @@
      (make-leaf 'D 1)
      (make-leaf 'C 1)))))
 
-(define sample-message 
-  '(0 1 1 0 0 1 0 1 0 1 1 1 0))
-
-(define decoded-message (decode sample-message sample-tree))
-
 (define (encode-symbol symbol tree)
-  (let ((caplist '()))
-  (define (symfind symbol current travelled)
-    (display travelled)
-    (newline)
+  (define (symfind symbol current travelled logger)
     (if (leaf? current)
         (if (eq? (symbol-leaf current) symbol)
-            (append caplist travelled)
-            (append caplist '()))
+            (append logger travelled)
+            (append logger '()))
         (let ((llog (append travelled '(0)))
               (rlog (append travelled '(1))))
-          (symfind symbol
-                   (left-branch current)
-                   llog)
-          (symfind symbol
-                   (right-branch current)
-                   rlog))))
+          (append logger (symfind symbol
+                                  (left-branch current)
+                                  llog
+                                  logger)
+                         (symfind symbol
+                                  (right-branch current)
+                                  rlog
+                                  logger)))))
 
-  (symfind symbol tree '())
-  (display caplist)
-  caplist))
-
-  ;(define (symfind symbol travelled tree logged)
-  ;  (if (leaf? tree)
-  ;      (if (eq? (symbol-leaf tree) symbol)
-  ;          travelled
-  ;          '()))
-
+  (let ((result (symfind symbol tree '() '())))
+    (cond ((null? result)
+            (error "ERROR: Symbol not found in tree\n"))
+          (else result))))
 
 (define (encode message tree)
   (if (null? message)
@@ -52,14 +40,20 @@
                       tree)
        (encode (cdr message) tree))))
 
-(display sample-tree)
+; (encode-symbol 'A sample-tree)
+; (encode-symbol 'B sample-tree)
+; (encode-symbol 'C sample-tree)
+; (encode-symbol 'D sample-tree)
+; (encode-symbol 'E sample-tree) ;; raises error as expected
 
-(encode-symbol 'A sample-tree)
+(define sample-message 
+  '(0 1 1 0 0 1 0 1 0 1 1 1 0))
 
-;(display "Encoded message: ")
-;(display sample-message)
-;(newline)
-;(display "Decoded message: ")
-;(display decoded-message)
-;(newline)
+(define decoded-message (decode sample-message sample-tree))
 
+(display "Encoded message: ")
+(display sample-message)
+(newline)
+(display "Recoded message: ")
+(display (encode decoded-message sample-tree))
+(newline)
