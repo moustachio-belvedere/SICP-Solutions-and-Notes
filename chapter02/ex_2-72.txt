@@ -1,0 +1,7 @@
+(Uses canonical answer as found elsewhere online, mine works but is more wasteful than it need be.)
+
+If searching the unordered sets is O(n), searching through all the sets is O(n^2), but that is worst case. Thus, on average encoding a symbol is O(n^2/n) = O(n).
+
+Revisit this, almost certaily incorrect.
+
+
