@@ -1,0 +1,13 @@
+- The principle of least commitment
+
+- An idea of adding or stripping information at higher and lower levels of abstraction
+
+- Checking a type and calling an appropriate procedure for that type is called _dispatching_
+
+- Weaknesses of dispatch:
+    * The generic procedures at higher abstraction level must be taught how to dispatch on a given type
+    * Naming clashes must be avoided
+    * I.e. not necessarily easy to add dispatch to new types
+
+- Data Directed Programming! Instead of naming everything, just have a lookup table in which ops for new types can be 'installed'
+    * Note use of list for type (defined as an interned string here) so that multiple dispatch could be implemented
