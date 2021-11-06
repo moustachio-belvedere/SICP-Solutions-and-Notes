@@ -1,6 +1,7 @@
-1.14 " time complexity
-1.28 " Carmichael test working, but not sure why, didn't follow book tactic
-2.14 - 2.16 " 'dependency problem' looks interesting, but out of scope of my learning interests for now
-2.52 - could do the modifications suggested, also play around with the painter more generally
-2.58b - working but addition doesn't commute in test example, alternative version with full parser works as intended
-2.72 - algorithmic complexit
+1.14: " time complexity
+1.28: " Carmichael test working, but not sure why, didn't follow book tactic
+2.14 - 2.16: 'dependency problem' looks interesting, but out of scope of my learning interests for now
+2.52: could do the modifications suggested, also play around with the painter more generally
+2.58b: working but addition doesn't commute in test example, alternative version with full parser works as intended
+2.72: algorithmic complexity
+2.74: difficult to test, not bringing much new material in
