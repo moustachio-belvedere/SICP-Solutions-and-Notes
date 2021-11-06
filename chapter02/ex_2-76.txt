@@ -1,0 +1,9 @@
+For explicit dispatch, we need to add in global scope all the relevant getter and transforming procedures 
+and introduce conditional branches to dispatch to them as appropriate.
+
+For data-directed style, each type/operation pair needs to be 'installed' into the generic table.
+
+In the message passing style, the operations must be added to corresponding new or existing data types.
+
+In a system where new types are often added, it is likely more convenient to use MP as the types
+are self contained. In a system where new operations are often added, data directed programming is probably more convenient.
