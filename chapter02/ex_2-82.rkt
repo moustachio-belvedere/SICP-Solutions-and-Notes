@@ -19,6 +19,9 @@
         (else (error "Bad tagged datum: 
               CONTENTS" datum))))
 
+(define (coercer types)
+  (define (coerce-iter typeholder 
+
 (define (apply-generic op . args)
   (let ((type-tags (map type-tag args)))
     (let ((proc (get op type-tags)))
