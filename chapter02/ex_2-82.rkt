@@ -26,7 +26,7 @@
 ;; (integer -> real) and (real -> complex) but not (integer -> complex).
 (define (coercer args)
   (define (coerce-iter fixed-args acc-args remaining-args)
-    (cond ((null? fixed-args) (error "Type raising strategy failed"))
+    (cond ((null? fixed-args) #f)
           ((null? remaining-args) acc-args)
           ((eq? (type-tag (car fixed-args)) (type-tag (car remaining-args)))
                 (coerce-iter fixed-args
@@ -44,11 +44,14 @@
 
 (define (apply-generic op . args)
   (cond ((>= (length args) 2)
-        (let ((tt (car (map type-tag args))))
-          (let ((proc (get op tt)))
-            (if proc
-                (apply proc (map contents args))
-                (display "PROC NOT FOUND FOR TYPES")))))
+         (let ((coerced (coercer args)))
+           (let ((tt (if coerced
+                         (car (map type-tag coerced))
+                         'no-type)))
+             (let ((proc (get op tt)))
+                  (if proc
+                      (apply proc (map contents coerced))
+                      (display "PROC NOT FOUND FOR TYPES"))))))
         (else
         (let ((type-tags (map type-tag args)))
           (let ((proc (get op type-tags)))
@@ -164,7 +167,6 @@
   (define (tag x) (attach-tag 'complex x))
 
   (define (add-complex z1 z2)
-    (display "here\n")
     (make-from-real-imag 
      (+ (real-part z1) (real-part z2))
      (+ (imag-part z1) (imag-part z2))))
@@ -209,13 +211,14 @@
 (put-coercion 'scheme-number 'complex
               (lambda (x) (make-complex-from-real-imag x 0)))
 
+;; stide-steps key issues which surface in later exercises
 (put-coercion 'rational 'complex
-              (lambda (x) (make-complex-from-real-imag x 0)))
+              (lambda (x) (make-complex-from-real-imag (/ (cadr x) (cddr x)) 0)))
 
-;; tests
-(coercer (list (make-scheme-number 2)
-               (make-rational 3 2)))
+;; coercer tests
+(add (make-scheme-number 2)
+     (make-rational 3 2))
 
-(coercer (list (make-scheme-number 3)
-               (make-complex-from-real-imag 3 5)
-               (make-rational 5 7)))
+(add (make-scheme-number 3)
+     (make-complex-from-real-imag 3 5)
+     (make-rational 5 7))
