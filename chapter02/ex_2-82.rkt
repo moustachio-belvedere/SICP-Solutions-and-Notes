@@ -20,14 +20,30 @@
         (else (error "Bad tagged datum: 
               CONTENTS" datum))))
 
-;(define (coercer types)
-;  (define (coerce-iter curtype 
+;; NOTE: this strategy will fail if conversions are only
+;; defined on types adjacent in the type hierarchy.
+;; E.g. if (complex complex scheme-number) and we have conversions
+;; (integer -> real) and (real -> complex) but not (integer -> complex).
+(define (coercer args)
+  (define (coerce-iter fixed-args acc-args remaining-args)
+    (cond ((null? fixed-args) (error "Type raising strategy failed"))
+          ((null? remaining-args) acc-args)
+          ((eq? (type-tag (car fixed-args)) (type-tag (car remaining-args)))
+                (coerce-iter fixed-args
+                             (append acc-args (list (car remaining-args)))
+                             (cdr remaining-args)))
+          (else (let ((tcur->tfixed (get-coercion (type-tag (car remaining-args)) (type-tag (car fixed-args)))))
+                (if tcur->tfixed
+                        (coerce-iter fixed-args
+                                     (append acc-args (list (tcur->tfixed (car remaining-args))))
+                                     (cdr remaining-args))
+                        (coerce-iter (cdr fixed-args)
+                                     '()
+                                     args))))))
+  (coerce-iter args '() args))
 
-; for full implementation would need
-; some kind of check (variadic?) to dispatch
-; nicely against non-variadic functions also
 (define (apply-generic op . args)
-  (cond ((> (length args) 2)
+  (cond ((>= (length args) 2)
         (let ((tt (car (map type-tag args))))
           (let ((proc (get op tt)))
             (if proc
@@ -186,10 +202,20 @@
 (define (make-complex-from-mag-ang r a)
   ((get 'make-from-mag-ang 'complex) r a))
 
-(add 2.5 1 5 1 29)
-(add (make-rational 3 2)
-     (make-rational 5 7)
-     (make-rational 17 11))
-(add (make-complex-from-real-imag 2 3)
-     (make-complex-from-real-imag 5 7)
-     (make-complex-from-real-imag 11 17))
+;; coercion
+(put-coercion 'scheme-number 'rational
+              (lambda (x) (make-rational x 1)))
+
+(put-coercion 'scheme-number 'complex
+              (lambda (x) (make-complex-from-real-imag x 0)))
+
+(put-coercion 'rational 'complex
+              (lambda (x) (make-complex-from-real-imag x 0)))
+
+;; tests
+(coercer (list (make-scheme-number 2)
+               (make-rational 3 2)))
+
+(coercer (list (make-scheme-number 3)
+               (make-complex-from-real-imag 3 5)
+               (make-rational 5 7)))
