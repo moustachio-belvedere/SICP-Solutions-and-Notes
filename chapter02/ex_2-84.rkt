@@ -56,6 +56,9 @@
                        'scheme-real
                        'complex)))
 
+(define (hi-type lst)
+  (apply max (map sizzle? lst)))
+
 (define (apply-generic op . args)
   (cond ((>= (length args) 2)
          (let ((coerced (coercer args)))
@@ -249,8 +252,13 @@
 (define y (raise x))
 (define z (raise y))
 (define a (raise z))
-(sizzle? x)
-(sizzle? y)
-(sizzle? z)
-(sizzle? a)
 
+(define (raise-coerce x) x)
+
+(define (consistent-type? x)
+  (apply = x))
+
+(define lst (list x y z a))
+(hi-type lst)
+(consistent-type? (map sizzle? lst))
+(consistent-type? (map sizzle? (list x x x)))
