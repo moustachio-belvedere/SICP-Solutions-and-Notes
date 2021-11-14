@@ -1,4 +1,7 @@
 #lang racket
 (#%provide exact-round
            truncate
-           argmax)
+           argmax
+           rationalize
+           numerator
+           denominator)
