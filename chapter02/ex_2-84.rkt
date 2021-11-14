@@ -1,7 +1,4 @@
 #lang sicp
-;;;;
-(#%require "utils_typecoerce.rkt") ;; comment this out ONCE DONE
-;;;;
 (#%require "utils_round.rkt")
 (#%require "utils_binreduce.rkt")
 (#%require "utils_getput.rkt")
@@ -26,45 +23,40 @@
         (else (error "Bad tagged datum: 
               CONTENTS" datum))))
 
-;; wip, need to change to raise
-(define (coercer args)
-  (define (coerce-iter fixed-args acc-args remaining-args)
-    (cond ((null? fixed-args) #f)
-          ((null? remaining-args) acc-args)
-          ((eq? (type-tag (car fixed-args)) (type-tag (car remaining-args)))
-                (coerce-iter fixed-args
-                             (append acc-args (list (car remaining-args)))
-                             (cdr remaining-args)))
-          (else (let ((tcur->tfixed (get-coercion (type-tag (car remaining-args)) (type-tag (car fixed-args)))))
-                (if tcur->tfixed
-                        (coerce-iter fixed-args
-                                     (append acc-args (list (tcur->tfixed (car remaining-args))))
-                                     (cdr remaining-args))
-                        (coerce-iter (cdr fixed-args)
-                                     '()
-                                     args))))))
-  (coerce-iter args '() args))
+(define (raise x)
+  ((get 'raise (type-tag x)) x))
 
-(define (sizzle? val)
-  (define (glitterator num sozzles)
-    (cond ((null? sozzles) (error "Type not registered in hierarchy"))
-          ((eq? (car sozzles) (type-tag val)) num)
-          (else (glitterator (+ num 1) (cdr sozzles)))))
+(define (raise-coerce lst)
+  (define (sizzle? val)
+    (define (glitterator num sozzles)
+      (cond ((null? sozzles) (error "Type not registered in hierarchy"))
+            ((eq? (car sozzles) (type-tag val)) num)
+            (else (glitterator (+ num 1) (cdr sozzles)))))
 
-  (glitterator 0 (list 'scheme-int
-                       'rational
-                       'scheme-real
-                       'complex)))
+    (glitterator 0 (list 'scheme-int
+                         'rational
+                         'scheme-real
+                         'complex)))
 
-(define (hi-type lst)
-  (apply max (map sizzle? lst)))
+  (define (top-sizzle lst)
+    (apply max (map sizzle? lst)))
+
+  (define (consistent-type? x)
+    (apply = (map sizzle? x)))
+
+  (let ((tmax (top-sizzle lst)))
+  (if (consistent-type? lst)
+      lst
+      (raise-coerce (map (lambda (x)
+                         (if (< (sizzle? x) tmax)
+                             (raise x)
+                             x))
+                         lst)))))
 
 (define (apply-generic op . args)
   (cond ((>= (length args) 2)
-         (let ((coerced (coercer args)))
-           (let ((tt (if coerced
-                         (car (map type-tag coerced))
-                         'no-type)))
+         (let ((coerced (raise-coerce args)))
+           (let ((tt (car (map type-tag coerced))))
              (let ((proc (get op tt)))
                   (if proc
                       (apply proc (map contents coerced))
@@ -245,20 +237,7 @@
 (define (make-complex-from-mag-ang r a)
   ((get 'make-from-mag-ang 'complex) r a))
 
-(define (raise x)
-  ((get 'raise (type-tag x)) x))
-
-(define x (make-scheme-int 5))
-(define y (raise x))
-(define z (raise y))
-(define a (raise z))
-
-(define (raise-coerce x) x)
-
-(define (consistent-type? x)
-  (apply = x))
-
-(define lst (list x y z a))
-(hi-type lst)
-(consistent-type? (map sizzle? lst))
-(consistent-type? (map sizzle? (list x x x)))
+(add (make-scheme-int 5)
+     (make-rational 2 1)
+     (make-scheme-real 7)
+     (make-complex-from-real-imag 11 9))
