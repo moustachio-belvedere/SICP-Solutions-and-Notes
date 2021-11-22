@@ -13,15 +13,13 @@
 ;; function
 
 (define (attach-tag type-tag contents)
-  (if (eq? type-tag 'scheme-number)
-      contents
-      (cons type-tag contents)))
+        (cons type-tag contents))
 
 (define (square x) (* x x))
 
 (define (type-tag datum)
   (cond ((pair? datum) (car datum))
-        ((number? datum) 'scheme-number)
+        ((number? datum) 'scheme-int)
         (else (error "Bad tagged datum: 
               TYPE-TAG" datum))))
 
@@ -71,24 +69,29 @@
              (let ((proc (get op tt)))
                   (if proc
                       (apply proc (map contents coerced))
+                      ; (drop (apply proc (map contents coerced)))
                       (display "PROC NOT FOUND FOR TYPES"))))))
         (else
         (let ((type-tags (map type-tag args)))
           (let ((proc (get op type-tags)))
             (if proc
                 (apply proc (map contents args))
+                ;(drop (apply proc (map contents args)))
                 (error
                   "No method for these types: 
                    APPLY-GENERIC"
                   (list op type-tags))))))))
 
 (define (add . x) (apply apply-generic 'add x))
+(define (equ? . x) (apply apply-generic 'equ? x))
 
 (define (install-scheme-int-package)
   (define (tag x)
     (attach-tag 'scheme-int x))
-  (put 'add 'scheme-number
+  (put 'add 'scheme-int
        (lambda x (apply + x)))
+  (put 'equ? 'scheme-int
+       (lambda x (apply = x)))
   (put 'make 'scheme-int
        (lambda (x) (tag (exact-round x))))
   (put 'raise 'scheme-int
@@ -108,6 +111,11 @@
     (make-rat (+ (* (numer x) (denom y))
                  (* (numer y) (denom x)))
               (* (denom x) (denom y))))
+  (define (equ? x)
+    (and (apply = (map numer x))
+         (apply = (map denom x))))
+  (put 'equ? 'rational 
+       (lambda x (equ? x)))
   (put 'make 'rational
        (lambda (n d) (tag (make-rat n d))))
   (put 'raise 'rational
@@ -128,6 +136,8 @@
         (+ i (* d (expt 10 (* -1 dp)))))))
   (put 'add 'scheme-real
        (lambda x (apply + x)))
+  (put 'equ? 'scheme-real
+       (lambda x (apply = x)))
   (put 'make 'scheme-real
        (lambda (x) (tag (nice-real (square (sqrt x))))))
   (put 'raise 'scheme-real
@@ -220,6 +230,11 @@
   (put 'add 'complex
        (lambda z 
          (tag (binreduce add-complex z))))
+  (define (equ? x)
+    (and (apply = (map real-part x))
+         (apply = (map imag-part x))))
+  (put 'equ? 'complex
+       (lambda x (equ? x)))
   (put 'make-from-real-imag 'complex
        (lambda (x y)
          (tag (make-from-real-imag x y))))
@@ -258,6 +273,16 @@
 (define (make-complex-from-mag-ang r a)
   ((get 'make-from-mag-ang 'complex) r a))
 
-(project (make-rational 5 2))
-(project (make-scheme-real 5.2))
-(project (make-complex-from-real-imag 3 2))
+(define (drop x)
+  (display x)(newline)
+  (let ((project (get 'project (type-tag x))))
+  (if project
+    (let ((projected (project x)))
+      (let ((raiser (get 'raise (type-tag projected))))
+        (if (equ? (raiser projected) x)
+            (drop (project x))
+            x)
+      x)))))
+
+(drop (make-complex-from-real-imag 3 2))
+(drop (make-complex-from-real-imag 3 0))
