@@ -1,0 +1,15 @@
+- Programmatic objects corresponding to physical objects
+
+- Successful OO: debug can be localised, isolated
+
+- Object oriented vs. Stream oriented (data oriented?)
+
+- 'The view that a system is composed of separate objects [each with their own state]
+  is most useful when the state variables of the system [entire program] can be grouped
+  into closely coupled subsystems that are only loosely coupled to other subsystems'
+
+- Note: mutable state implies the loss of _referential transparency_
+
+- scheme function! notation inspired Julia idiom
+
+- Note: racket raises if error if we try to set! a variable before it is defined
