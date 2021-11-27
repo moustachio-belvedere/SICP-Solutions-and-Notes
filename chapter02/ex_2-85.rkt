@@ -142,7 +142,7 @@
        (lambda (x) (tag (nice-real (square (sqrt x))))))
   (put 'raise 'scheme-real
        (lambda (x) (make-complex-from-real-imag
-                     (contents x) 0)))
+                     (contents x) 0.0)))
   (put 'project 'scheme-real
        (lambda (x) (let ((cx (rationalize (contents x) 1/10)))
                        (make-rational (exact-round (numerator cx))
@@ -274,15 +274,16 @@
   ((get 'make-from-mag-ang 'complex) r a))
 
 (define (drop x)
-  (display x)(newline)
   (let ((project (get 'project (type-tag x))))
   (if project
     (let ((projected (project x)))
       (let ((raiser (get 'raise (type-tag projected))))
         (if (equ? (raiser projected) x)
             (drop (project x))
-            x)
-      x)))))
+            x)))
+      x)))
 
 (drop (make-complex-from-real-imag 3 2))
 (drop (make-complex-from-real-imag 3 0))
+
+;; doesn't work for all types due to the problems addressed in ex 2.86
