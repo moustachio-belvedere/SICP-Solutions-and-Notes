@@ -5,3 +5,4 @@
 2.58b:       working but addition doesn't commute in test example, alternative version with full parser works as intended
 2.72:        algorithmic complexity
 2.74:        difficult to test, not bringing much new material in
+2.87 - 2.97: fiddly symbolic algebra, can come back to it later for fun, not essential for now
