@@ -17,3 +17,5 @@
 - Footnote 4 says `balance` is encapsulated within the `new-withdraw` _procedure_
   but `new-withdraw` is not strictly a procedure? It is a variable which happens
   to hold the entire let block that also happens to contain a procedure?
+
+- note that the 'let' block is callable!
