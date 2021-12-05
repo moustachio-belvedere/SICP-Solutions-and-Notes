@@ -1,0 +1,17 @@
+- Enivironments are where state can exist
+  * considered as a sequences of frames
+
+- EM (Environment Model) is a precise description of:
+    * name rule   - for lookup of variable value
+    * define rule - creating a new definition of a variable
+    * set! rule   - changing the value of a variable
+    * lambda rule - creating a procedure
+    * application - applying a procedure
+
+- Referential transparency no longer holds
+
+- Symbol is no longer a name for a value,
+  it now designates a _variable_ which is
+  a name for a 'place'
+
+- What's the difference between an *environment* and a *frame*?
