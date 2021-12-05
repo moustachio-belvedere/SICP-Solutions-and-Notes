@@ -1,6 +1,8 @@
 - Enivironments are where state can exist
   * considered as a sequences of frames
 
+- Procedures as objects with inherited context
+
 - EM (Environment Model) is a precise description of:
     * name rule   - for lookup of variable value
     * define rule - creating a new definition of a variable
