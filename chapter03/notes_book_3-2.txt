@@ -40,3 +40,35 @@ E2 consists of frame B only.
 In other words, an environment is a sequence of one or more frames.
 
 A frame as simply a context in which variables are defined?
+
+- When bindings lower down the frame hierarchy have the same name as those higher up,
+  this is 'shadowing'
+
+- Expressions only acquire meaning WRT some environment in which it is evaluated 
+
+- Scheme (not necessarily Racket?) does not guarantee l->r or any other specific order of argument evaluation
+
+- A procedure is a pair. Code AND a pointer to an environment
+  * 'Code' can be visualised as another pair: (formal parameters, procedure source)
+
+- Procedures only created by evaluating a lambda expression, anything else is syntactic sugar
+  * A provedure's environment is the environment in which the lambda expression was evaluated!
+
+- `define` works by adding bindings to frames
+
+- Procedure application creates a new environment in which the formal parameters are bound
+  to arguments. The procedure source is then evaluated within this new environment.
+
+  * Note that enclosing environment at procedure application time is the environment in which
+    the procedure was created!
+
+- `define` allows rebinding of existing variables (some flavours of lisp/scheme might warn/error on such events though racket doesn't)
+  * So, what then are the differences between `set!` and `define`? 
+    1. `set!` can't be used for initial definition of binding
+    2. `set!` finds first frame in environment that contains binding and modifies it,
+       whereas `define` would create a binding in the frame in which it is invoked.
+    3. ?
+
+
+
+
