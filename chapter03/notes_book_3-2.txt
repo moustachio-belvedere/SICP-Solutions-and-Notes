@@ -69,6 +69,6 @@ A frame as simply a context in which variables are defined?
        whereas `define` would create a binding in the frame in which it is invoked.
     3. ?
 
-
+- Difference between frames and scopes?
 
 
