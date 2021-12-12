@@ -71,4 +71,5 @@ A frame as simply a context in which variables are defined?
 
 - Difference between frames and scopes?
 
-
+- Where procedures generate environments with code, whether procedural code is shared between environments
+  or not is implementation defined
