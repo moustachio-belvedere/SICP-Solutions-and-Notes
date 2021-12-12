@@ -73,3 +73,9 @@ A frame as simply a context in which variables are defined?
 
 - Where procedures generate environments with code, whether procedural code is shared between environments
   or not is implementation defined
+
+- Reminder on let blocks that
+  `(let ((<var> <exp>)) <body>)`
+  is syntactic sugar for
+  `((lambda (<var>) <body>) <exp>)`
+  the equality of which is far more meaningful with the benefit of the environment model perspective.
