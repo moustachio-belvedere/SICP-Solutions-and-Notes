@@ -1,0 +1,6 @@
+- set-car! and set-cdr! should only be used for their _side effects_
+  because their return value is implementation dependent
+
+- mutations might introduce 'garbage'! (See footnote 17 on the garbage collector.)
+
+- 
