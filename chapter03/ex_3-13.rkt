@@ -11,4 +11,4 @@
   x)
 
 (define z (make-cycle (list 'a 'b 'c)))
-(display z)
+(display z) ;; #0=(a b c . #0#) ;; what does the hashed number indicate? Pointer?
