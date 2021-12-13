@@ -79,3 +79,5 @@ A frame as simply a context in which variables are defined?
   is syntactic sugar for
   `((lambda (<var>) <body>) <exp>)`
   the equality of which is far more meaningful with the benefit of the environment model perspective.
+
+- In book, why does global env arrow point at global env box? As if global env inherits from global env frame? Prob just a misleading graphic.
