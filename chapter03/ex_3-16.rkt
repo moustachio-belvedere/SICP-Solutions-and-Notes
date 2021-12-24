@@ -23,10 +23,10 @@
 (define ret-7 (cons (cons 2 '()) (cons 3 '())))
 (set-car! (cdr ret-7) (car ret-7))
 (set-cdr! (cdr ret-7) (car ret-7))
-
-(set-car! (car ret-7) (cdr ret-7))
-(set-cdr! (car ret-7) (cdr ret-7))
-
+(set-car! ret-7 (cdr ret-7))
+;; note, must `set-car!` of `ret-7` _after_ specifying
+;; redirection addresses of (cdr ret-7) otherwise
+;; we get an infinite loop.
 (count-pairs ret-7)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
