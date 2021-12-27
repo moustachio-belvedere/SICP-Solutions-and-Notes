@@ -52,7 +52,7 @@ A frame as simply a context in which variables are defined?
   * 'Code' can be visualised as another pair: (formal parameters, procedure source)
 
 - Procedures only created by evaluating a lambda expression, anything else is syntactic sugar
-  * A provedure's environment is the environment in which the lambda expression was evaluated!
+  * A procedure's environment is the environment in which the lambda expression was evaluated!
 
 - `define` works by adding bindings to frames
 
@@ -81,3 +81,5 @@ A frame as simply a context in which variables are defined?
   the equality of which is far more meaningful with the benefit of the environment model perspective.
 
 - In book, why does global env arrow point at global env box? As if global env inherits from global env frame? Prob just a misleading graphic.
+
+- Remember that 'frames' here are _not_ the same as 'stack frames' because here they are used to describe static/lexical scoping. An environment model based on stack frames would imply dynamic/stack-based scoping.

@@ -19,3 +19,5 @@
   to hold the entire let block that also happens to contain a procedure?
 
 - note that the 'let' block is callable!
+
+- remember that 'let' blocks are just syntactic sugar for evaluated lambda functions
