@@ -17,7 +17,7 @@
           #t))))
 
 (define (in? x lst)
-  (define errcount (iter-helper 100))
+  (define errcount (iter-helper 20))
 
   (define (in?-apply x lst)
 ;    (display "in?\n")
