@@ -6,3 +6,4 @@
 2.72:        algorithmic complexity
 2.74:        difficult to test, not bringing much new material in
 2.87 - 2.97: fiddly symbolic algebra, can come back to it later for fun, not essential for now
+3.19:        try with proper canonical algorithms for fixing edge cases
