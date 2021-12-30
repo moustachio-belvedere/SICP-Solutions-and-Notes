@@ -69,6 +69,8 @@ A frame as simply a context in which variables are defined?
        whereas `define` would create a binding in the frame in which it is invoked.
     3. ?
 
+(Note, point 1 behaviour can be modified by the compile-allow-set!-undefined option in Racket.) https://docs.racket-lang.org/reference/eval.html#%28def._%28%28quote._~23~25kernel%29._compile-allow-set%21-undefined%29%29
+
 - Difference between frames and scopes?
 
 - Where procedures generate environments with code, whether procedural code is shared between environments
