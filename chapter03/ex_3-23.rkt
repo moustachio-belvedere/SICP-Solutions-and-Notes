@@ -6,6 +6,14 @@
 ;; doubly-linked list for reverse
 ;; direction traversal
 
+;; implementation below works but is not great
+;; as memory consumption can grow large under
+;; use cases where front and rear deletion
+;; are used in certain ways.
+
+;; a separate queue is used to maintain pointers
+;; to previous points on queue.
+
 ;; lower level
 ;; q-part is queue, h-part is the wayback
 (define (q-part q) (car q))
@@ -145,47 +153,28 @@
 (define q1 (make-deque))
 ;(empty-deque? q1)
 
-;; rear insert tests
-;(rear-insert-deque! q1 'b)
-;(front-deque q1)
-;(rear-deque q1)
-;(rear-insert-deque! q1 'c)
-;(rear-insert-deque! q1 'd)
-;(rear-insert-deque! q1 'e)
-;(rear-delete-deque! q1)
-;(rear-delete-deque! q1)
-;(rear-delete-deque! q1)
-;(rear-delete-deque! q1)
-;(rear-insert-deque! q1 'c)
-;(rear-insert-deque! q1 'd)
-;(rear-insert-deque! q1 'e)
+;; rear tests
+(rear-insert-deque! q1 'b)
+(front-deque q1)
+(rear-deque q1)
+(rear-insert-deque! q1 'c)
+(rear-insert-deque! q1 'd)
+(rear-insert-deque! q1 'e)
+(rear-delete-deque! q1)
+(rear-delete-deque! q1)
+(rear-delete-deque! q1)
+(rear-delete-deque! q1)
+(rear-insert-deque! q1 'c)
+(rear-insert-deque! q1 'd)
+(rear-insert-deque! q1 'e)
 
-;; front insert tests
+;; front tests
+(set! q1 (make-deque))
 (front-insert-deque! q1 'd)
 (front-insert-deque! q1 'c)
 (front-insert-deque! q1 'b)
 (front-insert-deque! q1 'a)
-(rear-insert-deque! q1 'e)
-(rear-insert-deque! q1 'f)
 (front-delete-deque! q1)
 (front-delete-deque! q1)
 (front-delete-deque! q1)
-(front-delete-deque! q1)
-(front-delete-deque! q1)
-(front-insert-deque! q1 'g)
-(newline)
-
-;;; front-delete tests
-;(front-delete-deque! q1)
-;(front-deque q1)
-;(rear-deque q1)
-;(front-delete-deque! q1)
-;(front-deque q1)
-;(rear-deque q1)
-;(front-delete-deque! q1)
-;(newline)
-;
-;;; rear-delete tests
-;(rear-insert-deque! q1 'b)
-;(rear-insert-deque! q1 'c)
-;(front-insert-deque! q1 'a)
+(front-insert-deque! q1 'c)
