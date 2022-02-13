@@ -1,0 +1,5 @@
+Two serious flaws:
+
+A duplicated reliance on the multiplicands. For example: if the multiplier constraint uses the value of multiplicand 2 (m2) and product to find mutliplicand 1 (m1), so if m2 is not known, and product given, m1 can never be find.
+
+The constraint is fundamentally undefined as the square rooting operation is multi-valued.
