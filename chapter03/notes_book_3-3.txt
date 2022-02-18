@@ -8,3 +8,6 @@
 - scheme has unique symbol for any given name, sharing is what
   enables comparing symbols using eq? which checks equality
   of pointers. CF Julia concept of symbols as 'interned strings'
+
+- cryptic footnote 33 comment, page 296:
+  "Although it is easy to implement the expression-oriented style in terms of the imperative implementation, it is very difficult to do the converse".
