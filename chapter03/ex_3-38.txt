@@ -1,0 +1,21 @@
+Part A: the only order that matters is which position Mary's withdrawal occurs.
+
+1st:
+  ||100 - 50 = 50
+  ||50 -10   = 40 ***
+
+2nd (after Peter):
+  ||100 + 10 = 110
+  ||110 - 55 = 55
+  ||55 - 20  = 35 ***
+
+2nd (after Paul):
+  ||100 - 20 = 80
+  ||80 - 40  = 40
+  ||40 + 10  = 50 ***
+
+3rd:
+  ||100 - 10 = 90
+  ||90 - 45 = 45
+
+See ex_3-38* images for possible answers to part B.
