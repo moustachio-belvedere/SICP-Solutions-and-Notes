@@ -1,0 +1,3 @@
+Perhap BenBit is correct because a read could occur over data that is changing during the read, for example the lower bits may correspond to the lower bits of some value x0 written at time t0, and the upper bits may correspond to the upper bits of some value x1, in the process of being written at time of read t1.
+
+If `set!` is atomic, then it's unneeded though.
