@@ -1,0 +1,3 @@
+I'm not sure the book gives enough information to answer the question at this stage in the book, but looking ahead to the implementation given on page 311 it seems this change would make no difference to program behaviour at all.
+
+This is because any returned 'serialised procedure' interacts with the shared state mutex in the same way.
