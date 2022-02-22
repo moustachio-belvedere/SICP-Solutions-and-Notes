@@ -1,0 +1,7 @@
+If `exchange` is fully serialised, the three accounts exchanging are just like shuffling around a pair within a set of 3 cards.
+
+If only deposits and withdrawals are serialised, the difference may be out of date by the time deposits and withdrawals are processed, but the amount of total money is still always conserved because, for whatever money is withdrawn, that money is deposited elsewhere in the system. An example of this can be seen in ex_3-43_a.png.
+
+However, if withdrawal and deposit are not serialised on a per account basis, the expressions within those procedures can interleave and thereby corrupt the system. For example, see ex_3-43_b.png.
+
+
