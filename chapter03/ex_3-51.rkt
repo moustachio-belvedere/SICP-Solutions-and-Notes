@@ -40,18 +40,21 @@
    show 
    (stream-enumerate-interval 0 10)))
 
-(stream-car (stream-cdr x))
-
-(stream-cdr x)
-(newline)
-
 (stream-ref x 5)
-(newline)
-(stream-ref x 7)
-
-;; (force 5) => 5
-;; once an element of the stream has been `force`d,
-;; it is no longer a `promise`, it has been evaluated
-;; to the corresponding number of the interval.
+;; each stream item up to the 6th
+;; is displayed because `stream-cdr`
+;; forces evaluation of the function.
 ;;
-;; This is why `show` only acts once per stream element.
+;; the final value, 5, is printed twice as
+;; SICP Racket scheme prints the function
+;; result by default.
+(newline)
+
+(stream-ref x 7)
+;; due to the memoization mentioned
+;; in-text, the results of the promises
+;; evaluated so far have been cached.
+;;
+;; So the `(display-line)` is not called
+;; again on the stream elements traversed
+;; in the previous call.
