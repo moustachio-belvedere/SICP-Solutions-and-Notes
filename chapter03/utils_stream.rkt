@@ -1,15 +1,17 @@
 #! /bin/racket
 #lang sicp
-(#%provide display-line
+(#%provide add-streams
+           display-line
+           display-stream
+           scale-stream
            show
            stream-car
            stream-cdr
-           stream-map
            stream-enumerate-interval
-           stream-for-each
            stream-filter
-           stream-ref
-           display-stream)
+           stream-for-each
+           stream-map
+           stream-ref)
 
 (define (display-line x)
   (display x)
@@ -67,3 +69,9 @@
 
 (define (display-stream s)
   (stream-for-each display-line s))
+
+(define (add-streams s1 s2)
+  (stream-map + s1 s2))
+
+(define (scale-stream stream factor)
+  (stream-map (lambda (x) (* x factor)) stream))
