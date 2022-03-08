@@ -3,6 +3,8 @@
 (#%provide add-streams
            display-line
            display-stream
+           integers
+           ones
            scale-stream
            show
            stream-car
@@ -72,6 +74,9 @@
 
 (define (add-streams s1 s2)
   (stream-map + s1 s2))
+
+(define ones (cons-stream 1 ones))
+(define integers (cons-stream 1 (add-streams ones integers)))
 
 (define (scale-stream stream factor)
   (stream-map (lambda (x) (* x factor)) stream))
