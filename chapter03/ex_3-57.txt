@@ -1,4 +1,4 @@
-Without memoization, growth in number of additions seems to grow like the sequence itself, i.e 1.6^n.
+Without memoization, growth in number of additions seems to grow ~ 2^n.
 
 With memoization, the number of additions required seems to be ~ (n-2).
 
