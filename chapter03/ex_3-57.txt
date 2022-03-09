@@ -34,3 +34,5 @@ _______________
 |+ with cache__|
 |0|0|1|1|1|1| 1|
 |_|_|_|_|_|_|__|
+
+Note, the number of additions (with cache) was calculated manually by keeping a table of additions already computed.
