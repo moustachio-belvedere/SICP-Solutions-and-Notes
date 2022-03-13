@@ -15,7 +15,7 @@
                (scale-stream (mul-series (get-X Sr)
                                          (stream-cdr Sr))
                                  -1)))
-3.145926535897931
+
 (define (div-series num denom)
   (let ((init-denom (stream-car denom)))
     (if (= 0 init-denom)
