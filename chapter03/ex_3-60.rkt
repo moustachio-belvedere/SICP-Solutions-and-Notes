@@ -12,7 +12,7 @@
                             (stream-cdr stream))))
 
 ;; part A
-(define (div-streams s1 s2) 
+(define (div-streams s1 s2)
   (stream-map / s1 s2))
 
 (define (mul-streams s1 s2)
@@ -22,13 +22,13 @@
   (div-streams stream integers))
 
 ;; part B
-(define cosine-series 
+(define cosine-series
   (cons-stream 1
                (scale-stream (integrate-series sine-series)
                              -1)))
 
 (define sine-series
-  (cons-stream 0 
+  (cons-stream 0
                (integrate-series cosine-series)))
 
 ;; ex 3.60 continuation of ex 3.59
