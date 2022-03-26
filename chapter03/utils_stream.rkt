@@ -49,24 +49,24 @@
       (stream-ref (stream-cdr s) (- n 1))))
 
 (define (stream-filter pred stream)
-  (cond ((stream-null? stream) 
+  (cond ((stream-null? stream)
          the-empty-stream)
         ((pred (stream-car stream))
-         (cons-stream 
+         (cons-stream
           (stream-car stream)
-          (stream-filter 
+          (stream-filter
            pred
            (stream-cdr stream))))
-        (else (stream-filter 
-               pred 
+        (else (stream-filter
+               pred
                (stream-cdr stream)))))
 
 (define (stream-for-each proc s)
   (if (stream-null? s)
       'done
-      (begin 
+      (begin
         (proc (stream-car s))
-        (stream-for-each proc 
+        (stream-for-each proc
                          (stream-cdr s)))))
 
 (define (display-stream s)
