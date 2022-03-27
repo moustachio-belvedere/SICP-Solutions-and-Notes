@@ -1,6 +1,7 @@
 #lang sicp
 (#%provide flatten-list
-           appendl)
+           appendl
+           not-divisible?)
 
 ;; added this just as a reminder of how it worked
 (define (appendl l1 l2)
@@ -16,3 +17,6 @@
         ((pair? (car l)) (appendl (flatten-list (car l))
                                   (flatten-list (cdr l))))
         (else (cons (car l) (flatten-list (cdr l))))))
+
+(define (not-divisible? x n)
+  (not (= 0 (modulo x n))))

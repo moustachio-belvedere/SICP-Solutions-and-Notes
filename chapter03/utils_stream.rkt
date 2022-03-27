@@ -3,6 +3,7 @@
 (#%provide add-streams
            display-line
            display-stream
+           display-n-stream
            integers
            ones
            scale-stream
@@ -71,6 +72,14 @@
 
 (define (display-stream s)
   (stream-for-each display-line s))
+
+(define (display-n-stream s n)
+  (if (= n 0)
+      'Done
+      (begin (display (stream-car s))
+             (newline)
+             (display-n-stream (stream-cdr s)
+                               (- n 1)))))
 
 (define (add-streams s1 s2)
   (stream-map + s1 s2))
