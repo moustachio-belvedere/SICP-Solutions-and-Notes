@@ -16,13 +16,17 @@
         int))))
   int)
 
-(define (solve a b y0 dy0 dt)
+(define (solve-2nd f y0 dy0 dt)
   (newline) ;; why is this required for the function to work?
   ;; seems like a small bug in `delay` implementation
   (define   y (integral (delay  dy)  y0 dt))
   (define  dy (integral (delay ddy) dy0 dt))
-  (define ddy (add-streams (scale-stream dy a)
-                           (scale-stream  y b)))
+  (define ddy (stream-map f dy y))
   y)
 
-(stream-ref (solve 1 1 1 1 0.001) 1000)
+(define (f-test-gen a b)
+  (lambda (dy y)
+    (+ (* dy a)
+       (*  y b))))
+
+(stream-ref (solve-2nd (f-test-gen 1 1) 1 1 0.001) 1000)
