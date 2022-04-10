@@ -26,13 +26,26 @@
   (or-iter (operands exp)))
 
 ; ;; derived expressions?
-; (define (make-if predicate consequent alternative)
-;   (list 'if predicate consequent alternative))
-;
-; ;; assume 'true and 'false are implemented booleans
-; (define (eval-and exp env)
-;   (define (and-rec ops prev)
-;     (make-if             prev
-;              (make-if (first-operand ops)
-;                       (and-rec (rest-operands
-;   (make-if (
+(define (make-if predicate consequent alternative)
+   (list 'if predicate consequent alternative))
+
+;; assume 'true and 'false are how booleans are implemented
+(define (and->if exp env)
+  (define (and-rec ops prev)
+    (if (no-operands? ops)
+        prev
+        (make-if (first-operand ops)
+                 (and-rec (rest-operands) (first-operand ops))
+                 'false)))
+
+  (and-rec (operands exp) 'true))
+
+(define (or->if exp env)
+  (define (or-rec ops)
+    (if (no-operands? ops)
+        'false
+        (make-if (first-operand ops)
+                 'true
+                 (or-rec (rest-operands)))))
+
+  (or-rec (operands exp)))
