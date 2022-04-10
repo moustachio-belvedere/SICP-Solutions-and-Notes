@@ -4,3 +4,4 @@
 2.87 - 2.97: fiddly symbolic algebra
 3.19:        try with proper canonical algorithms for fixing edge cases
 3.32:        not done
+4.04:        could do `and` and `or` as derived expressions
