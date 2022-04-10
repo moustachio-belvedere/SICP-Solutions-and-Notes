@@ -5,6 +5,9 @@
 
 (define special-forms (make-table))
 (define (install! key val) (insert! key val special-forms))
+(define (special-form exp)
+  (if (pair? exp)
+      (lookup (car exp) special-forms)))
 
 (define (eval exp env)
   (cond ((self-evaluating? exp) exp)
@@ -21,11 +24,6 @@
         (else
          (error "Unknown expression
                  type: EVAL" exp))))
-
-;; expression type getter
-(define (special-form exp)
-  (if (pair? exp)
-      (lookup (car exp) special-forms)))
 
 ;; install special forms in table
 (install! 'quote (lambda (exp env) (text-of-quotation exp)))
