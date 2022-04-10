@@ -1,0 +1,3 @@
+#! /bin/racket
+#lang sicp
+
