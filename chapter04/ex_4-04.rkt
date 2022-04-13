@@ -14,7 +14,7 @@
           (if (true? cur)
               (and-iter (rest-operands ops) cur)
               #f))))
-  (and-iter (operands exp) env #t))
+  (and-iter (operands exp) #t))
 
 (define (eval-or exp env)
   (define (or-iter ops)
