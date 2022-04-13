@@ -56,19 +56,19 @@
 ;;
 ;; applying this to the actual function, l2r:
 ; (define (list-of-values exps env)
-;   (define (lv-iter acc rem env)
+;   (define (lv-iter acc rem)
 ;     (if (null? rem)
 ;         acc
 ;         (lv-iter (append acc (list (eval (first-operand rem) env)))
 ;                  (rest-operands rem))))
-;   (lv-iter '() exps env))
+;   (lv-iter '() exps))
 ;
 ; ;; r2l, assumes some function `reverse-operands` exists
 ; ;; which reverses the order of the operands
 ; (define (list-of-values exps env)
-;   (define (lv-iter acc rem env)
+;   (define (lv-iter acc rem)
 ;     (if (null? rem)
 ;         acc
 ;         (lv-iter (cons (eval (first-operand rem) env) acc)
 ;                  (rest-operands rem))))
-;   (lv-iter '() (reverse-operands exps) env))
+;   (lv-iter '() (reverse-operands exps)))
