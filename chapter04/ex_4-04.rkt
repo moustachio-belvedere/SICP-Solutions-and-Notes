@@ -30,22 +30,22 @@
    (list 'if predicate consequent alternative))
 
 ;; assume 'true and 'false are how booleans are implemented
-(define (and->if exp env)
+(define (and->if exp)
   (define (and-rec ops prev)
     (if (no-operands? ops)
         prev
         (make-if (first-operand ops)
-                 (and-rec (rest-operands) (first-operand ops))
+                 (and-rec (rest-operands ops) (first-operand ops))
                  'false)))
 
   (and-rec (operands exp) 'true))
 
-(define (or->if exp env)
+(define (or->if exp)
   (define (or-rec ops)
     (if (no-operands? ops)
         'false
         (make-if (first-operand ops)
                  'true
-                 (or-rec (rest-operands)))))
+                 (or-rec (rest-operands ops)))))
 
   (or-rec (operands exp)))

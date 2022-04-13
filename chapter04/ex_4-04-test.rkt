@@ -15,9 +15,9 @@
         ((if? exp)
          (eval-if exp env))
         ((and? exp)
-         (eval-and exp env))
+         (eval (and->if exp) env))
         ((or? exp)
-         (eval-or exp env))
+         (eval (or->if exp) env))
         ((lambda? exp)
          (make-procedure
           (lambda-parameters exp)
@@ -38,6 +38,25 @@
          (error "Unknown expression
                  type: EVAL" exp))))
 
+(define (and->if exp)
+  (define (and-rec ops prev)
+    (if (no-operands? ops)
+        prev
+        (make-if (first-operand ops)
+                 (and-rec (rest-operands ops) (first-operand ops))
+                 'false)))
+
+  (and-rec (operands exp) 'true))
+
+(define (or->if exp)
+  (define (or-rec ops)
+    (if (no-operands? ops)
+        'false
+        (make-if (first-operand ops)
+                 'true
+                 (or-rec (rest-operands ops)))))
+
+  (or-rec (operands exp)))
 
 (define (metapply procedure arguments)
   (cond ((primitive-procedure? procedure)
