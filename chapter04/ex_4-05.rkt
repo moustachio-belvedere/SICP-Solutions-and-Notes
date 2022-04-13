@@ -18,8 +18,11 @@
 (define (cond->if exp)
   (expand-clauses (cond-clauses exp)))
 
-(define (recipe-clause? exp)
-  (c
+(define (recipe-clause? clause)
+  (eq? (cadr clause) '=>))
+
+(define (rconsequent clause)
+  (cddr clause))
 
 (define (expand-clauses clauses)
   (if (null? clauses)
@@ -31,7 +34,9 @@
                 (sequence->exp (cond-actions first))
                 (error "ELSE clause isn't last: COND->IF" clauses))
             (make-if (cond-predicate first)
-                     (sequence->exp
-                      (cond-actions first))
+                     (if (recipe-clause? first)
+                         (list (rconsequent first) (cond-predicate first))
+                         (sequence->exp
+                          (cond-actions first)))
                      (expand-clauses
                       rest))))))
