@@ -7,6 +7,10 @@ Written as part of an SICP book club.
 
 The language used is the SICP flavour of Racket.
 
+Note `sicp` language pragma in files. Also, SICP repl can be used:
+
+`racket -l sicp --repl`
+
 Non-racket files are generally either LaTeX, PDF or HTML files.
 
 Questions not done or partially done are noted in `revisit.txt`.
