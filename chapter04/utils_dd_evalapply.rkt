@@ -289,6 +289,7 @@
         (list 'cons cons)
         (list 'null? null?)
         (list '+ +)
+        (list '* *)
         ))
 
 (define (primitive-procedure-names)
