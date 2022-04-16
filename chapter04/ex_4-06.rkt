@@ -10,7 +10,7 @@
   (let ((params (map car (cadr exp)))
         (args   (map cadr (cadr exp)))
         (body   (cddr exp)))
-   (append (list (make-lambda params body)) args))) 
+   (append (list (make-lambda params body)) args)))
 
 (install! 'let (lambda (exp env) (eval (let->combination exp) env)))
 

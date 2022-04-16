@@ -200,10 +200,10 @@
                       rest))))))
 
 (define (true? x)
-  (not (eq? x 'false)))
+  (not (eq? x false)))
 
 (define (false? x)
-  (eq? x 'false))
+  (eq? x false))
 
 (define (make-procedure parameters body env)
   (list 'procedure parameters body env))
@@ -288,8 +288,10 @@
         (list 'cdr cdr)
         (list 'cons cons)
         (list 'null? null?)
+        (list 'display display)
         (list '+ +)
         (list '* *)
+        (list '= =)
         ))
 
 (define (primitive-procedure-names)
