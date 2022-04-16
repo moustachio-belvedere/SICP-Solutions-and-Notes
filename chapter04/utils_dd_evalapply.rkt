@@ -6,7 +6,8 @@
            driver-loop
            special-forms
            install!
-           make-lambda)
+           make-lambda
+           sequence->exp)
 
 (define special-forms (make-table))
 (define (install! key val) (insert! key val special-forms))
@@ -291,6 +292,7 @@
         (list 'display display)
         (list '+ +)
         (list '* *)
+        (list '- -)
         (list '= =)
         ))
 

@@ -16,19 +16,10 @@
         (params (map car (caddr exp)))
         (args   (map cadr (caddr exp)))
         (body   (cdddr exp)))
-       (display "here\n")
-       (display exp)
-       (display name)
-       (display params)
-       (display args)
-       (display body)
-       (display (list 'begin (list 'define (list name))))
-       (display (list 'begin (list 'define (list name params) body) (cons name args)))
-       (list 'begin (list 'define (list name params) body) (cons name args))))
-       ;(list 'begin (list 'define name (make-lambda params body)) (cons name args))))
-       ;(list 'begin (list 'define name 0) (list 'define name (make-lambda params body)) (cons name args))))
-       ;(list 'let (list (list name (make-lambda (cons 'fnc params) body))) (cons name (cons name args)))))
-       ;(list 'let (list (list name 0) (list name (make-lambda params body))) (cons name args))))
+        (sequence->exp (list (append (list 'define (cons name params)) body) (cons name args)))))
+
+; (let nl ((x 3)) (if (= x 1) x (nl (- x 1))))
+; 1
 
 (define (let->combination exp)
   (if (is-named-let? exp)
