@@ -36,8 +36,7 @@
 
 (define (let->combination exp)
   (if (is-named-let? exp)
-      (begin (display (namlet->combination exp)) (newline)
-             (namlet->combination exp))
+      (namlet->combination exp)
       (stdlet->combination exp)))
 
 (install! 'let (lambda (exp env) (eval (let->combination exp) env)))
