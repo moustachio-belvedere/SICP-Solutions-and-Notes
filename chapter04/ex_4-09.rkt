@@ -25,34 +25,21 @@
 
 (install! 'let (lambda (exp env) (eval (let->combination exp) env)))
 
-;; list of:
-;;  - variables to iterate on, initial conditions
-;;  - incrementer functions, one per var above
-;;  - finishing conditions as lamda funcs
-;;
-;; function passed to loop over needs two args
-;;  - list of iterated args, incremented by above funcs
-;;  - state to be passed on at each iteration
-;;
-;;
-;; simpler, would be nice to be able to transform
-;;
-;;
-; (define (fib n)
-;   (let fib-iter ((a 1) (b 0) (count n))
-;     (if (= count 0)
-;         b
-;         (fib-iter (+ a b)
-;                   a
-;                   (- count 1)))))
-;;
-;; to this:
-; (for n fib-iter 1 0)
-; where fib-iter:
-; (let fib-iter ((a 1) (b 0) (count n))
-;     (if (= count 0)
-;         b
-;         (fib-iter (+ a b)
-;                   a
-;                   (- count 1)))))
-(driver-loop)
+(define (stop= n)
+  (lambda (x) (= x n)))
+
+(define (inc x) (+ x 1))
+
+(define (forz i-i finish? next func i-args)
+  (let iter ((i i-i) (args i-args))
+    (if (finish? i)
+        args
+        (iter (next i) (apply func args)))))
+
+(define (tfnk x y)
+  (list (+ x y) x))
+
+;; fibonacci
+(car (forz 0 (stop= 10) inc tfnk (list 0 1)))
+
+;(driver-loop)
