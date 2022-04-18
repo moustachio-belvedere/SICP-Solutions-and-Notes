@@ -7,7 +7,8 @@
            special-forms
            install!
            make-lambda
-           sequence->exp)
+           sequence->exp
+           make-if)
 
 (define special-forms (make-table))
 (define (install! key val) (insert! key val special-forms))
@@ -294,6 +295,8 @@
         (list '* *)
         (list '- -)
         (list '= =)
+        (list 'list list)
+        (list 'apply metapply)
         ))
 
 (define (primitive-procedure-names)
