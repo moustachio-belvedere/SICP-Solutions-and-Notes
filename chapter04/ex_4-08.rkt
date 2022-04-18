@@ -19,6 +19,8 @@
 ;         (body   (cdddr exp)))
 ;         (sequence->exp (list (append (list 'define (cons name params)) body) (cons name args)))))
 
+;; could also use nice combinator approach similar
+;; to that in ex_plore_annonymousrecursion.rkt
 (define (namlet->combination exp)
   (let ((name   (cadr exp))
         (params (map car (caddr exp)))
