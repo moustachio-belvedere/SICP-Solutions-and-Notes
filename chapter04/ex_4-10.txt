@@ -1,0 +1,7 @@
+There are manifold ways in which the syntax could be modified.
+
+Examples of utils_dd_evalapply.rkt that affect implemented language syntax:
+
+- any of the installed special forms symbol searched for by `tagged-list?
+- the symbols for true and false installed in the base environment
+- the symbols used to map to the implementation Scheme primitive functions
