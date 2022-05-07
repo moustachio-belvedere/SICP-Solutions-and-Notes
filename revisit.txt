@@ -4,3 +4,4 @@
 2.87 - 2.97: fiddly symbolic algebra
 3.19:        try with proper canonical algorithms for fixing edge cases
 3.32:        not done
+4.15:        Halting problem, try and formulate proof independently
