@@ -1,5 +1,6 @@
 #! /bin/racket
 #lang sicp
+(#%require "utils_racketmisc.rkt")
 (#%require "utils_table.rkt")
 
 (#%provide eval
@@ -244,59 +245,51 @@
                  vals))))
 
 ;; extension
-(define (env-loop env scanfunc err)
-  (define (scan frame)
-    (cond ((null? frame)
-           (nullscan frame env))
-          ((eq? var (caar varvals))
-           (eqscan frame env))
-  (let ((frame (first-frame env)))
+(define (env-loop env scanfunc err var)
   (if (eq? env the-empty-environment)
-      (err frame)
-      (scan frame))))
+      (error err var)
+      (let ((frame (first-frame env)))
+        (scanfunc frame))))
 
 (define (lookup-variable-value var env)
-    (define (scan varvals)
-      (cond ((null? varvals)
-             (env-loop
-              (enclosing-environment env)))
-            ((eq? var (caar varvals))
-             (cdar varvals))
-            (else (scan (cdr varvals)))))
-
-        (error "Unbound variable" var)
-
-  (env-loop env))
+  (let ((errmsg "Unbound variable"))
+  (define (scan varvals)
+    (cond ((null? varvals)
+           (env-loop (enclosing-environment env)
+                      scan
+                      errmsg
+                      var))
+          ((eq? var (caar varvals))
+           (cdar varvals))
+          (else (scan (cdr varvals)))))
+  (env-loop env scan errmsg var)))
 
 (define (set-variable-value! var val env)
-  (define (env-loop env)
-    (define (scan varvals)
-      (cond ((null? varvals)
-             (env-loop
-              (enclosing-environment env)))
-            ((eq? var (caar varvals))
-             (set-cdr! (car varvals) val))
-            (else (scan (cdr varvals)))))
-    (if (eq? env the-empty-environment)
-        (error "Unbound variable: SET!" var)
-        (let ((frame (first-frame env)))
-          (scan frame))))
-  (env-loop env))
+  (let ((errmsg "Unbound variable: SET!"))
+  (define (scan varvals)
+    (cond ((null? varvals)
+           (env-loop (enclosing-environment env)
+                     scan
+                     errmsg
+                     var))
+          ((eq? var (caar varvals))
+           (set-cdr! (car varvals) val))
+          (else (scan (cdr varvals)))))
+  (env-loop env scan errmsg var)))
 
 (define (set-first-frame! env var)
   (set-car! env var))
 
 (define (define-variable! var val env)
-  (let ((frame (first-frame env)))
-    (define (scan varvals)
-      (cond ((null? varvals)
-             (set-first-frame! env
-                               (cons (cons var val)
-                                     (first-frame env))))
-            ((eq? var (caar varvals))
-             (set-cdr! (car varvals) val))
-            (else (scan (cdr varvals)))))
-    (scan frame)))
+  (define (scan varvals)
+    (cond ((null? varvals)
+           (set-first-frame! env
+                             (cons (cons var val)
+                                   (first-frame env))))
+          ((eq? var (caar varvals))
+           (set-cdr! (car varvals) val))
+          (else (scan (cdr varvals)))))
+  (env-loop env scan "" var))
 ;; modified end
 
 (define primitive-procedures
