@@ -376,4 +376,15 @@
 (install! 'cond
           (lambda (exp env) (eval (cond->if exp) env)))
 
+;; let from ex_4-06
+(define (is-named-let? exp)
+  (symbol? (cadr exp)))
+(define (let->combination exp)
+  (let ((params (map car (cadr exp)))
+        (args   (map cadr (cadr exp)))
+        (body   (cddr exp)))
+   (append (list (make-lambda params body)) args)))
+(install! 'let (lambda (exp env) (eval (let->combination exp) env)))
+;; let from ex_4-06
+
 (driver-loop)
