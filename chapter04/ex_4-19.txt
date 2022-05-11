@@ -1,0 +1,9 @@
+Normal order evaluation of define arg would make it behave as Eva wants in this particular case but does not work well as a general solution.
+
+Another option could be to treat all *unassigned* variables like to arguments functions to be evaluated in applicative style. For example, when the interpreter see `b = a + x` with `a` unassigned it scans for a definition of `a`, computes and ћtores it then completes the definition of `b`.
+
+Both systems could lead to infinite recursion e.g.
+(def b (+ a x))
+(def a b)
+
+Could embed cycle detection within the evaluation process to signal an error if this occurs.
