@@ -208,7 +208,8 @@
   (eq? x false))
 
 (define (make-procedure parameters body env)
-  (list 'procedure parameters body env))
+  (list 'procedure parameters (scan-out-defines body) env))
+  ;;(list 'procedure parameters body env))
 (define (compound-procedure? p)
   (tagged-list? p 'procedure))
 (define (procedure-parameters p) (cadr p))
@@ -377,8 +378,6 @@
           (lambda (exp env) (eval (cond->if exp) env)))
 
 ;; let from ex_4-06
-(define (is-named-let? exp)
-  (symbol? (cadr exp)))
 (define (let->combination exp)
   (let ((params (map car (cadr exp)))
         (args   (map cadr (cadr exp)))
@@ -386,5 +385,44 @@
    (append (list (make-lambda params body)) args)))
 (install! 'let (lambda (exp env) (eval (let->combination exp) env)))
 ;; let from ex_4-06
+
+(define (scan-out-defines proc-body)
+  ;; helper func for adding a list to the end
+  ;; of another list otherwise untouched
+  (define (add-to-end l1 item)
+    (append l1 (list item)))
+
+  ;; helper func for repetitive let add logic
+  (define (new-let let-acc top-expr)
+    (let ((lvar (definition-variable top-expr)))
+      (list 'let (add-to-end (cadr let-acc)
+                             (list lvar ''*unassigned*)))))
+
+  ;; helper func for repetitive body modification logic
+  (define (new-bod mod-body top-expr)
+    (let ((lvar (definition-variable top-expr))
+          (lval (definition-value top-expr)))
+      (add-to-end mod-body
+                  (list 'set! lvar lval))))
+
+  (define (has-lets? let-acc)
+    (not (null? (cadr let-acc))))
+
+  ;; main logic
+  (define (traverse-body let-acc mod-body orig-body)
+    (if (null? orig-body)
+        (if (has-lets? let-acc)
+            (list (append let-acc mod-body))
+            mod-body)
+        (let ((top-expr (car orig-body)))
+             (if (definition? top-expr)
+                 (traverse-body (new-let let-acc top-expr)
+                                (new-bod mod-body top-expr)
+                                (cdr orig-body))
+                 (traverse-body let-acc
+                                (add-to-end mod-body top-expr)
+                                (cdr orig-body))))))
+
+  (traverse-body (list 'let '()) '() proc-body))
 
 (driver-loop)

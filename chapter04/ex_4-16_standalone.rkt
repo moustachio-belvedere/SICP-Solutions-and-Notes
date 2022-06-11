@@ -68,10 +68,15 @@
       (add-to-end mod-body
                   (list 'set! lvar lval))))
 
+  (define (has-lets? let-acc)
+    (not (null? (cadr let-acc))))
+
   ;; main logic
   (define (traverse-body let-acc mod-body orig-body)
     (if (null? orig-body)
-        (append let-acc mod-body)
+        (if (has-lets? let-acc)
+            (append let-acc mod-body)
+            mod-body)
         (let ((top-expr (car orig-body)))
              (if (definition? top-expr)
                  (traverse-body (new-let let-acc top-expr)
@@ -84,3 +89,18 @@
   (traverse-body (list 'let '()) '() proc-body))
 
 (scan-out-defines exp1)
+
+;; no defines should lead to no let usage
+(define exp2 (list
+  '(+ x 1)))
+
+(scan-out-defines exp2)
+
+;; with a few small modifications, this works
+;; as installed in ex_4-16.rkt.
+
+;; makes more sense to install in `make-procedure`
+;; as it only needs to be done once and is fundamentally
+;; part of the implementation of a given function, rather
+;; than simply a behavioural quirk that only occurs
+;; when the body of the function is accessed.
