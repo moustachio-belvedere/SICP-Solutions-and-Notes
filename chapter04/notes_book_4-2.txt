@@ -1,0 +1,10 @@
+Some terminology:
+
+Procedure is _strict_ in Argument X if Argument X is evaluated before body of procedure is entered.
+
+Procedure is _non-strict_ in Argument Y if Argument Y is NOT evaluated before body of procedure is entered.
+
+In purely applicative languages, all procedures are strct in all their arguments.
+
+In normal-оrder language all _COMPOUND_ procedures are non-strict in their arguments, though primitive procedures may be either strict OR non-strict in their args.
+
