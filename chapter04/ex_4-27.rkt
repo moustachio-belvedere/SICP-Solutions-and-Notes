@@ -483,3 +483,32 @@
         (else obj)))
 
 (driver-loop)
+
+;; (define count 0)
+;; (define (id x) (set! count (+ count 1)) x)
+;; (define w (id (id 10)))
+;;
+;; count
+;; >> 1
+;;
+;; w
+;; >> 10
+;;
+;; count
+;; >> 2
+
+;; the only surprsing result is the first one.
+;; the definition of `w` appears to invoke `id` exactly
+;; once. why?
+;;
+;; easier to understand with the slightly modified function:
+;; (define (id x s) (set! count (+ count 1)) (display s) x)
+;; (define w (id (id 10 "inner") "outer"))
+;; >> outer
+
+;; in defining `w`, the outer function call of `id` proceeds
+;; through the two expressions with side-effects (`set!` and `display`)
+;; but does not evaluate the "inner" call as it's result is not strictly
+;; needed yet.
+
+
