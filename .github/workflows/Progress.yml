@@ -9,8 +9,7 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
-      - name: print dbg message
+      - name: get progress
         run: |
-          ls -la ./.github/workflows/
-          source ./.github/workflows/progress.sh
+          ./.github/workflows/progress.sh
         shell: bash
