@@ -10,5 +10,3 @@ jobs:
       - name: Print the input name to STDOUT
         run: .github/workflows/progress.sh
         shell: bash
-    with:
-      password: ${{ secrets.ACCESS_TOKEN }}
