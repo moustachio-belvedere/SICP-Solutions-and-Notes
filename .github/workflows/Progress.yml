@@ -5,6 +5,7 @@ on: push
 jobs:
   Progress:
     runs-on: ubuntu-latest
+    permissions: read-all
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
