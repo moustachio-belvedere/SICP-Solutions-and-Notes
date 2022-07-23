@@ -18,7 +18,4 @@ jobs:
           os:
             - ubuntu-latest
       steps:
-        with:
-          version: ${{ matrix.version }}
-          arch: ${{ matrix.arch }}
         run: ./progress.sh
