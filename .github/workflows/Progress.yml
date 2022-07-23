@@ -1,21 +1,10 @@
 name: progress
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   Progress:
-      runs-on: ${{ matrix.os }}
-      strategy:
-        fail-fast: true
-        matrix:
-          version:
-            - 1
-          arch:
-            - x64
-          os:
-            - ubuntu-latest
-      steps:
-        run: ./progress.sh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the input name to STDOUT
+        run: source ./progress.sh
