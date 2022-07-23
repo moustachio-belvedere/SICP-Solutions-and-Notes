@@ -10,5 +10,5 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       - name: print dbg message
-        run: ls -la
+        run: ls -la ./.github/workflows/
         shell: bash
