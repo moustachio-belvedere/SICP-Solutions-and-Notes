@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print the input name to STDOUT
-        run: source .github/workflows/progress.sh
+        run: .github/workflows/progress.sh
         shell: bash
