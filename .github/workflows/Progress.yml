@@ -8,7 +8,7 @@ jobs:
     permissions: read-all
     steps:
       - name: checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: print dbg message
         run: |
           ls -la ./.github/workflows/
