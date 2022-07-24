@@ -16,3 +16,6 @@ Non-racket files are generally either LaTeX, PDF or HTML files.
 Questions not done or partially done are noted in `revisit.txt`.
 
 Original repo url: https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes
+
+For approximate progress on each push, see workflow linked:
+[![progress](https://github.com/moustachio-belvedere/workflows/progress/badge.svg)](https://github.com/moustachio-belvedere/workflows/progress/actions?query=workflow%3Aprogress)
