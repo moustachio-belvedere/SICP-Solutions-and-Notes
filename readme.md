@@ -18,4 +18,5 @@ Questions not done or partially done are noted in `revisit.txt`.
 Original repo url: https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes
 
 For approximate progress on each push, see workflow linked:
-[![progress](https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes/workflows/progress/badge.svg)](https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes/workflows/progress/actions?query=workflow%3Aprogress)
+
+[![progress](https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes/workflows/progress/badge.svg)](https://github.com/moustachio-belvedere/SICP-Solutions-and-Notes/actions/workflows/Progress.yml)
