@@ -12,4 +12,4 @@ jobs:
       - name: get progress
         run: |
           ./.github/workflows/progress.py
-        shell: python
+        shell: bash
