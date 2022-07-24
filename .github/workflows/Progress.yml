@@ -25,6 +25,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4 # peaceiris/actions-gh-pages@v3
         # if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           folder: build
           # publish_dir: ./build
