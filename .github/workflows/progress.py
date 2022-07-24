@@ -22,7 +22,7 @@ for chapnum in range(1, 5):
 tpercent = f"{int(100*n_done_total/n_total)}"
 cpercentages = [f"{int(100*x)}" for x in cpercentages]
 
-readme = ["# SICP Progress"]
+readme = ["# SICP approximate progress through exercises"]
 readme.append("|      |**Chapter 1**|**Chapter 2**|**Chapter 3**|**Chapter 4**|**Chapter 5**|**Total**|")
 readme.append("|:----:|:----:|:----:|:----:|:----:|:----:|:----:|")
 readme.append("|**Progress**|**{} %**|**{} %**|**{} %**|**{} %**|**{} %**|**{} %**|".format(*cpercentages, tpercent))
