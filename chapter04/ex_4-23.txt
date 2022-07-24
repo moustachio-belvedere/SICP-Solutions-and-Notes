@@ -1,1 +1,0 @@
-Alyssa's solution has overhead of iterating through loop. In-text version has already 'analyzed'/unrolled this aspect of the procedure.

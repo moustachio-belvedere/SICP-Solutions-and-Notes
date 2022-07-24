@@ -1,7 +1,0 @@
-Let (a, b, c) and (x, y z) are <access>, <generate new value> and <set value> for proecesses P1 and P2 respectively.
-
-The following order of events are then possible:
-
-(a, b, c, x, y, z) => 101
-(a, b, x, y, z, c) => 100
-(x, y, z, a, b, c) => 121

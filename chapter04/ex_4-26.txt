@@ -1,1 +1,0 @@
-Ben's suggestion of implementing `unless` as an applicative order special form has the worst of both worlds. As Alyssa said, it's a special form so can't be passed around as an argument to higher order functions, and it evaluates it's arguments applicatively so their is no special parsing/evaluation benefits from it being a special form.

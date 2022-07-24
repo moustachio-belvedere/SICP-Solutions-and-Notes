@@ -1,5 +1,0 @@
-- when are messge passing interface and data directed interface the same, if ever? For example, defining a function for a specific type within a C++ class feels more like message passing interface, whereas outside the type feels more like data directed programming.
-
-- note that questions 2.82 - 2.85 shows us two mechanisms of raising the types to be equal and thus enabling generica programming. However, in EVEN MORE generic systems (e.g. Julia), the types don't necessarily all have to be raised to be the same. Perhaps the mechanism we implement then is not true multiple dispatch, just a simulation of it.
-
-- can the above be done on a lazy basis? I.e. only care about the type when it matters?

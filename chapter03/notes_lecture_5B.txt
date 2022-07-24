@@ -1,1 +1,0 @@
-An object as something that has 'identity'.

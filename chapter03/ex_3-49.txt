@@ -1,5 +1,0 @@
-Some fixed, universal order of serialization must be computable before any serialization actually takes place for the described mechanism to work.
-
-Consider an account having a list of creditors' accounts to whom money is owed. Some function `pay-creditors` might serialize the main account before iterating through the creditors and paying each of them one by one. If one of the first accounts creditors also decides to pay _its_ creditors, deadlock could occur.
-
-Perhaps in the above example though, the mechanism can be salvaged by noting that the list of creditors could be made accessible and thus viewed before any serialization takes place. It's difficult to find an example that can't fixed in some way to revive the efficacy of this mechanism.

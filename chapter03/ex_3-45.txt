@@ -1,1 +1,0 @@
-This implementation is incorrect - it will lead to deadlock as `serialized-exchange` obtains the mutex and tries to call `withdraw` which will try to obtain the mutex which could only be obtained after `serialized-exchange` finishes.

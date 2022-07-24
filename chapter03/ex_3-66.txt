@@ -1,4 +1,0 @@
-(1, 100) should be ~ the 200th element to occur.
-
-(99, 100) will only occur after n>>200 iterations.
-(100, 100) will occur after m>n iterations, or is it m>>n?

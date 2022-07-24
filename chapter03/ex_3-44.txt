@@ -1,1 +1,0 @@
-The key relevant difference between `exchange` and `transfer` is that, in `exchange`, the `difference` may be out of date by the time the withdrawal and deposit occur. In transfer, the amount is fixed by the caller. Ben Bitdiddle is correct.

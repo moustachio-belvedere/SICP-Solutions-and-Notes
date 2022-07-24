@@ -1,3 +1,0 @@
-For every new row added, Louis Reasoner is solving the subproblems in their totatlity - which quickly adds up. Guess that instead of time T, it takes time T!.
-
-Solutions suggest this is actually worse, at T^T.

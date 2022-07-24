@@ -1,5 +1,0 @@
-Compound expressions -> abstraction of a combination of primitivate expressions
-  - e.g. (+ (* 3 2))
-
-Derived expressions -> expressions that our evaluator will syntactically transform (i.e. syntactic sugar), this allows us to keep the evaluator simpler
-  - e.g. `let`, `define <function>` and, in the initial simple evaluator, `cond`
