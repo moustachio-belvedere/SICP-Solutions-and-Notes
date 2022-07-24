@@ -19,8 +19,19 @@ for chapnum in range(1, 5):
         cpercentages[chapnum - 1] = n_done_chapter/n_in_chapters[chapnum - 1]
         n_done_total += n_done_chapter
 
-tpercent = "{:.2f}".format(n_done_total/n_total)
-cpercentages = ["{:.2f}".format(x) for x in cpercentages]
+tpercent = f"{int(100*n_done_total/n_total)}"
+cpercentages = [f"{int(100*x)}" for x in cpercentages]
 
-print(cpercentages)
-print(tpercent)
+readme = ["# SICP Progress"]
+readme.append("|** **|**Chapter 1**|**Chapter 2**|**Chapter 3**|**Chapter 4**|**Chapter 5**|**Total**|")
+readme.append("|:----:|:----:|:----:|:----:|:----:|:----:|:----:|")
+readme.append("|**Progress**|**{} %**|**{} %**|**{} %**|**{} %**|**{} %**|**{} %**|".format(*cpercentages, tpercent))
+
+try:
+    os.mkdir("build")
+except FileExistsError as e:
+    pass
+
+with open('build/readme.md', 'w') as f:
+    for line in readme:
+        f.write(f"{line}\n")
