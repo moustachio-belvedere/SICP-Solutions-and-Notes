@@ -32,6 +32,6 @@ try:
 except FileExistsError as e:
     pass
 
-with open('build/index.md', 'w') as f:
+with open('build/readme.md', 'w') as f:
     for line in readme:
         f.write(f"{line}\n")
