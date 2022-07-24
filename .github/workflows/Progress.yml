@@ -1,6 +1,9 @@
 name: progress
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 permissions:
     contents: write
