@@ -1,0 +1,17 @@
+`apply` does not have a case for when the procedure is a thunk. Therefore it will fail. Also it is simply as defined in the book's specification of the language.
+
+However, an alternative approach that does delay the operand is shown in ex_4-28.rkt. Not immediately sure what issues might arise from doing it this way but it seems to work fine with some basic testing. For example:
+
+    ;;; L-Eval input:
+    (define (foo x) (x 5))
+
+    ;;; L-Eval value:
+    ok
+
+    ;;; L-Eval input:
+    ((foo (lambda (y) (display y) (if (= y 5) + -))) 3 7)
+    5
+    ;;; L-Eval value:
+    10
+
+works fine in the modified version.
