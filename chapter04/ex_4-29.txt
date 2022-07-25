@@ -1,0 +1,13 @@
+Regarding program output, reponse 1 is always 100 regardless of memoization as REPL output forces the thunk. Response 2 is more interesting. Memoized thunk will only evaluate the `id` side effect once (so (= count 1)), whereas unmemoized will evalue the `id` side effect twice (so (= count 2)).
+
+As for programs that will run _much_ slower without memoization, we can expect these to be programs that will have to re-evaluate the same expression many times. For example:
+
+(define (plus x y) (+ x y))
+(define (foo x y i)
+  (if (= i 0)
+      (plus x y)
+      (foo (plus x y) (plus x y) (- i 1))))
+(define (foo-dispatch x) (foo x x 10))
+(foo-dispatch (plus 1 1))
+
+has to evaluate the thunk (plus 1 1) many (2048?) times! More generally this will often be an issue for recursive functions.
