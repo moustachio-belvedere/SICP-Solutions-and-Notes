@@ -24,10 +24,7 @@
          ((special-form exp) exp env))
         ;; end data-directed section
         ((application? exp)
-         ;; EX_4-28.rkt change start
-         ;; (metapply (actual-value (operator exp) env)
-         (metapply (delay-it (operator exp) env)
-         ;; EX_4-28.rkt change finish
+         (metapply (actual-value (operator exp) env)
                 (operands exp)
                 env))
         ;;;; applicative version ;;;;
@@ -60,12 +57,6 @@
             arguments
             env)   ; changed
            (procedure-environment procedure))))
-        ;; EX_4-28.rkt change start
-        ((thunk? procedure)
-         (metapply (force-it procedure) arguments env))
-        ((evaluated-thunk? procedure)
-         (metapply (thunk-value procedure) arguments env))
-        ;; EX_4-28.rkt change finish
         (else (error "Unknown procedure
                       type: APPLY"
                      procedure))))
@@ -105,7 +96,7 @@
   (cond ((last-exp? exps)
          (eval (first-exp exps) env))
         (else
-         (eval (first-exp exps) env)
+         (actual-value (first-exp exps) env)
          (eval-sequence (rest-exps exps)
                         env))))
 
@@ -332,11 +323,11 @@
         (list 'cons cons)
         (list 'null? null?)
         (list 'display display)
+        (list 'newline newline)
         (list '+ +)
         (list '* *)
         (list '- -)
         (list '= =)
-        (list '> >)
         (list 'list list)
         (list 'apply metapply)
         ))

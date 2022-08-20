@@ -1,0 +1,17 @@
+a) works because `display` is a primitive. still works fine if we wrap
+   it up in a compound function (lambda (x) (display x)) as `eval` for
+   applications still evaluates the primitives in its body.
+
+b) with original lazy
+   (p1 1) -> (1 2)
+   (p2 1) -> 1
+
+   with modified
+   (p1 1) -> (1 2)
+   (p2 1) -> (1 2)
+
+because modified forces `actual value` of `e`. even though `set!` is a primitive it's a delayed arg.
+
+c) -
+
+d) modified seems more intuitive, but being able to choose 'laziness' on a case-by-case basis might be useful (next exercise is a step towards that)
