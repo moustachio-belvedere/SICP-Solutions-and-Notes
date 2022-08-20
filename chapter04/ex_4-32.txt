@@ -1,0 +1,5 @@
+infinite lazy trees are a good example (From Eli Bendersky).
+
+could also be used 'out of the box' to solve the differential
+equation described in 3.5.4 without needing to resort to extra
+`delay` and `force` calls.
