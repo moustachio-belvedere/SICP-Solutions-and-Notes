@@ -11,13 +11,11 @@
 (define (higher? x y)
   (> x y))
 
-;; with some of the 'manual' constraint work
-;; pre-applied
-(define baker    (list 1 2 3 4))
-(define cooper   (list 2 4))
-(define fletcher (list 2 3 4))
-(define miller   (list 3 4 5))
-(define smith    (list 1 2 4 5))
+(define baker    (list 1 2 3 4 5))
+(define cooper   (list 1 2 3 4 5))
+(define fletcher (list 1 2 3 4 5))
+(define miller   (list 1 2 3 4 5))
+(define smith    (list 1 2 3 4 5))
 
 (map (lambda (c)
        (filter (lambda (m) (higher? m c)) miller))

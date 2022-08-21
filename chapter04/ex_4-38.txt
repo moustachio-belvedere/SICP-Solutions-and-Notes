@@ -5,4 +5,16 @@ without SF criterion but before distinction, there would be 240 possibilities.
 I think we need help from `amb` actual implementation here, but we have not yet
 done that in the book. Once we have, it's just a question of using `try-again` repeatedly until we run out of solutions.
 
-However, from the above numbers, it's definitely plausibly that there will be >1 solution with the SF constraint removed.
+Actually, once realizing the Cooper is limitid to (2, 4) as he can't be 5 as that would make Miller's floor impossible, the answers can be manually deduced.
+
+With SF criterion, only possible answer is:
+(B C F M S) => (3 2 4 5 1)
+
+Without SF criterion:
+(B C F M S) => (1 4 2 5 3)
+(B C F M S) => (3 4 2 5 1)
+(B C F M S) => (1 2 4 3 5)
+(B C F M S) => (1 2 4 5 3)
+(B C F M S) => (3 2 4 5 1)
+
+so there are 5 solutions without SF criterion.
