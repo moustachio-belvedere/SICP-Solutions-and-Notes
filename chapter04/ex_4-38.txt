@@ -1,0 +1,3 @@
+432 possibilities WITH Smith-Fletcher criterion but before distinct criterion.
+
+without SF criterion but before distinction, there would be 540 possibilities.

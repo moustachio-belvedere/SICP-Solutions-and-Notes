@@ -1,7 +1,8 @@
 #! /bin/racket
 #lang sicp
 
-;; Yes the order affects the answer. The optimum order will depend
+;; the order does not affect the result itself, but:
+;; Yes the order affects the speed. The optimum order will depend
 ;; on implementation details but it's likely that the simple inequalities
 ;; will be most performant, the subtraction absolute inequalities slightly
 ;; less so, and the `distinct` requirement will be _least_ performant.
