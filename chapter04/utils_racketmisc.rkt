@@ -5,4 +5,5 @@
            foldl
            foldr
            filter
-           map)
+           map
+           remove-duplicates)
