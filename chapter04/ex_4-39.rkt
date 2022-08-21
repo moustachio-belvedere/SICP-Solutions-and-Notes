@@ -20,7 +20,17 @@
 (require
   (distinct? (list baker cooper fletcher miller smith)))
 
-;; also
+;; importantly, the distinct criterion is the least likely to
+;; be satisified. (Only 24/625 probability.) As it is also most
+;; costly to test, this makes the original implementation doubly
+;; inefficient.
+;;
+;; this is in contrast, for example, to the simple floor criteria
+;; - baker not on top: 4/5
+;; - cooper not on bottom: 4/5
+;; - miller higher than cooper: 2/5
+
+;; also, as a side note:
 
 (require (not (= fletcher 5)))
 (require (not (= fletcher 1)))
@@ -34,4 +44,3 @@
 ;; however, along these lines, it would be interesting
 ;; to see if combining other conditions in this way
 ;; affected performance in any way.
-
