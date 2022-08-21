@@ -1,0 +1,3 @@
+By logical deduction (first assume M4 is FALSE as starting point, from which it can be worked out that M4 is actually true and keep going from there), the correct order is:
+
+(1, 2, 3, 4, 5) => (k, j, b, m, e)
