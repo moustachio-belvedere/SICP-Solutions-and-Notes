@@ -1,6 +1,6 @@
-432 possibilities WITH Smith-Fletcher criterion but before distinct criterion.
+192 possibilities WITH Smith-Fletcher criterion but before distinct criterion.
 
-without SF criterion but before distinction, there would be 540 possibilities.
+without SF criterion but before distinction, there would be 240 possibilities.
 
 I think we need help from `amb` actual implementation here, but we have not yet
 done that in the book. Once we have, it's just a question of using `try-again` repeatedly until we run out of solutions.

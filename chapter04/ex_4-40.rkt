@@ -1,7 +1,7 @@
 #! /bin/racket
 #lang sicp
 
-;; 432 possibilities before distinct criterion applied
+;; 192 possibilities before distinct criterion applied
 
 ;; one way to encode all this logic (with some manual work
 ;; required before implementation) is to simply remove
@@ -9,8 +9,8 @@
 ;; `amb` choices, i.e.
 
 (let ((baker    (amb 1 2 3 4))
-      (cooper   (amb 2 4 5))
-      (fletcher (amb 2 3 4))
+      (cooper   (amb 2 4))
+      (fletcher (amb 2 4))
       (miller   (amb 3 4 5))
       (smith    (amb 1 2 4 5))))
 
@@ -42,8 +42,8 @@
 ;; the above two approaches could be combined in some even
 ;; more optimal way. for example:
 
-(let ((fletcher (amb 2 3 4))
-      (cooper (amb 2 4 5)))
+(let ((fletcher (amb 2 4))
+      (cooper (amb 2 4)))
         (require (not (= (abs (- fletcher cooper)) 1)))
   (let ((miller (amb 3 4 5)))
         (require (> miller cooper))
