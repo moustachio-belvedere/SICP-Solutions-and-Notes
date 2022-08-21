@@ -1,0 +1,1 @@
+Yes it is faster (lower computational complexity, at least) because it only has two choice points rather than the three choice points in the the original algorithm.
