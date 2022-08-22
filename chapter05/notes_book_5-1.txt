@@ -1,1 +1,2 @@
-placeholder
+Data paths: registers and operations
+Cotroller: sequences the above _operations_
