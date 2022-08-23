@@ -490,6 +490,7 @@
         (list '= =)
         (list '> >)
         (list '< <)
+        (list 'memq memq)
         (list 'abs abs)
         (list 'member member)
         (list 'not not)
