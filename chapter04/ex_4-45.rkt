@@ -3,6 +3,16 @@
 
 ;; (parse '(the professor lectures to the student in the class with the cat))
 
+;; 1) "the professor lectures to the student, in the class with the cat"
+;; - the professor is lecturing the student, in a classroom that happens to have a cat in it
+;;
+;; 2) "the professor lectures to the student in the class, with the cat"
+;; - the professor is 'with' his cat, and is lecturing to the student in the class
+;; - the professor is _lecturing_ ẃith his cat, to the student
+;;
+;; 3) "the professor lectures to (the student in the class with the cat)"
+;; - the professor is lecturing to a student who happens to 'with' a cat
+
 ;; parse 1
 ;;--------
 ;; (simple-noun-phrase (article the) (noun professor))
@@ -44,14 +54,13 @@
 
 ;; parse 5
 ;;--------
-(simple-noun-phrase (article the) (noun professor))
-(verb-phrase (verb lectures) (prep-phrase (prep to)
-                             (noun-phrase (simple-noun-phrase (article the) (noun student))
-                                          (prep-phrase (prep in)
-                                                       (noun-phrase (simple-noun-phrase (article the) (noun class))
-                                                                    (prep-phrase (prep with)
-                                                                                 (simple-noun-phrase (article the) (noun cat))))))))
-
+;; (simple-noun-phrase (article the) (noun professor))
+;; (verb-phrase (verb lectures) (prep-phrase (prep to)
+;;                              (noun-phrase (simple-noun-phrase (article the) (noun student))
+;;                                           (prep-phrase (prep in)
+;;                                                        (noun-phrase (simple-noun-phrase (article the) (noun class))
+;;                                                                     (prep-phrase (prep with)
+;;                                                                                  (simple-noun-phrase (article the) (noun cat))))))))
 
 (define (require p)
     (if (not p) (amb)))
