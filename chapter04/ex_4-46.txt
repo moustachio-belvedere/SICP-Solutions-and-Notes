@@ -1,0 +1,1 @@
+because language works left to right! For compound linguistic constructs to be interpreted correctly, it's essential that the argument to `parse` is evaluated this way.

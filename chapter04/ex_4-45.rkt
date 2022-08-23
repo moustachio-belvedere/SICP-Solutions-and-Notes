@@ -112,6 +112,7 @@
   (maybe-extend (parse-simple-noun-phrase)))
 
 (define *unparsed* '())
+
 (define (parse input)
   (set! *unparsed* input)
   (let ((sent (parse-sentence)))
