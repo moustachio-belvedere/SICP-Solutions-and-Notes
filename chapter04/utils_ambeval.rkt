@@ -472,11 +472,16 @@
     (scan (frame-variables frame)
           (frame-values frame))))
 
+(define (b-and x y) (and x y))
+(define (b-or x y) (or x y))
+
 (define primitive-procedures
   (list (list 'car car)
         (list 'cdr cdr)
         (list 'cons cons)
         (list 'null? null?)
+        (list 'and b-and)
+        (list 'or b-or)
         (list 'display display)
         (list 'newline newline)
         (list '+ +)
