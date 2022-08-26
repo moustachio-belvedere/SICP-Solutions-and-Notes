@@ -1,4 +1,4 @@
 # SICP approximate progress through exercises
 |      |**Chapter 1**|**Chapter 2**|**Chapter 3**|**Chapter 4**|**Chapter 5**|**Total**|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-|**Progress**|**100 %**|**83 %**|**98 %**|**56 %**|**0 %**|**71 %**|
+|**Progress**|**100 %**|**83 %**|**98 %**|**58 %**|**0 %**|**71 %**|
